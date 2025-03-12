@@ -3,7 +3,6 @@ package ru.itmo.edugoolda.features.group.presentation
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
-import com.arkivanov.decompose.router.stack.push
 import kotlinx.serialization.Serializable
 import ru.itmo.edugoolda.core.ComponentFactory
 import ru.itmo.edugoolda.core.utils.toStateFlow
@@ -24,7 +23,7 @@ class RealGroupComponent(
         childFactory = ::createChild
     ).toStateFlow(lifecycle)
 
-    private inner class CommunicationResolver: GroupCreateComponent.Communication {
+    private inner class CommunicationResolver : GroupCreateComponent.Communication {
         override fun onGroupCreated(id: String) {
             TODO("Not yet implemented")
         }
@@ -32,13 +31,12 @@ class RealGroupComponent(
         override fun onCancel() {
             TODO("Not yet implemented")
         }
-
     }
 
     private fun createChild(
         config: Config,
         componentContext: ComponentContext
-    ): GroupComponent.Child = when(config) {
+    ): GroupComponent.Child = when (config) {
         Config.Creation -> GroupComponent.Child.Creation(
             componentFactory.createGroupCreateComponent(
                 componentContext,
@@ -49,6 +47,6 @@ class RealGroupComponent(
     @Serializable
     sealed interface Config {
         @Serializable
-        data object Creation: Config
+        data object Creation : Config
     }
 }

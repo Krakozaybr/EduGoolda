@@ -1,9 +1,7 @@
 package ru.itmo.edugoolda.features.group.presentation.create
 
-import android.text.BoringLayout
 import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.kmm_form_validation.control.InputControl
-
 
 interface GroupCreateComponent {
     val nameInputControl: InputControl

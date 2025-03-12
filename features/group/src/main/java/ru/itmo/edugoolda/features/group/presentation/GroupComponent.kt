@@ -8,7 +8,6 @@ interface GroupComponent {
 
     val childStack: StateFlow<ChildStack<*, Child>>
 
-
     sealed interface Child {
         class Creation(val instance: GroupCreateComponent) : Child
     }

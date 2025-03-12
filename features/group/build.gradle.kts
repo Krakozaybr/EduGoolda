@@ -17,7 +17,6 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":data:group"))
 
-
     // Kotlin
     implementation(libs.kotlinx.datetime)
     implementation(libs.coroutines.core)

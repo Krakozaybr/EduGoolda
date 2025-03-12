@@ -2,7 +2,6 @@ package ru.itmo.edugoolda.features.group.presentation.create
 
 import com.arkivanov.decompose.ComponentContext
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
 import ru.itmo.edugoolda.core.error_handling.ErrorHandler
 import ru.itmo.edugoolda.core.error_handling.safeLaunch
 import ru.itmo.edugoolda.core.utils.componentScope
@@ -23,7 +22,6 @@ class RealGroupCreateComponent(
     override val isCreationProgress = MutableStateFlow(false)
     override val isCreationButtonEnabled = computed(nameInputControl.text, String::isNotBlank)
     override val selectedSubject = MutableStateFlow(subjectsList.value[0])
-
 
     override fun onCreateClick() {
         if (isCreationProgress.value) return
