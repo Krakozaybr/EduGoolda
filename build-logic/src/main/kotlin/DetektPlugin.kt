@@ -37,7 +37,8 @@ class DetektPlugin : Plugin<Project> {
                 "**/resources/**",
                 "code_quality/**",
                 "geminio/**",
-                "git_hooks/**"
+                "git_hooks/**",
+                ".live-plugins/"
             )
             reports {
                 xml {
