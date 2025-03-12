@@ -6,13 +6,6 @@ import dev.icerock.moko.resources.desc.desc
 import dev.icerock.moko.resources.desc.plus
 import ru.itmo.edugoolda.core.BuildConfig
 import ru.itmo.edugoolda.core.R
-import ru.itmo.edugoolda.core.error_handling.DeserializationException
-import ru.itmo.edugoolda.core.error_handling.ExternalAppNotFoundException
-import ru.itmo.edugoolda.core.error_handling.NoInternetException
-import ru.itmo.edugoolda.core.error_handling.SSLHandshakeException
-import ru.itmo.edugoolda.core.error_handling.ServerException
-import ru.itmo.edugoolda.core.error_handling.ServerUnavailableException
-import ru.itmo.edugoolda.core.error_handling.UnauthorizedException
 import ru.itmo.edugoolda.core.utils.Resource
 import ru.itmo.edugoolda.core.utils.ResourceFormatted
 
