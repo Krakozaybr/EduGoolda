@@ -32,10 +32,10 @@ val LightAppColors = CustomColors(
         error = Color(0xFFB00020)
     ),
     button = ButtonColors(
-        primary = Color(0xFF6750A4),
-        primaryDisabled = Color(0xFF6750A4).copy(alpha = 0.4f),
-        secondary = Color(0xFFFFFFFF),
-        secondaryDisabled = Color(0xFFFFFFFF).copy(alpha = 0.4f)
+        primary = Color(0xFF007DBC),
+        primaryDisabled = Color(0xFF007DBC).copy(alpha = 0.4f),
+        secondary = Color(0xFFD9ECF5),
+        secondaryDisabled = Color(0xFFD9ECF5).copy(alpha = 0.4f)
     ),
     border = BorderColors(
         primary = Color(0xFF000000),
