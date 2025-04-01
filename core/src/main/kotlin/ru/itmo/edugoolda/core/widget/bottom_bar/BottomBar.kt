@@ -5,11 +5,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
+
 import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,7 +16,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.res.vectorResource
 import ru.itmo.edugoolda.core.R
@@ -80,19 +75,19 @@ fun BottomNavigationBarPreview() {
     val items = listOf(
         BottomNavItem(
             name = "Главная",
-            icon = ImageVector.vectorResource(R.drawable.ic_24_heart)//Icons.Default.Home
+            icon = ImageVector.vectorResource(R.drawable.ic_24_heart)
         ),
         BottomNavItem(
             name = "Избранное",
-            icon = ImageVector.vectorResource(R.drawable.ic_24_heart)//Icons.Default.Favorite
+            icon = ImageVector.vectorResource(R.drawable.ic_24_heart)
         ),
         BottomNavItem(
             name = "Профиль",
-            icon = ImageVector.vectorResource(R.drawable.ic_24_heart)//Icons.Default.Person
+            icon = ImageVector.vectorResource(R.drawable.ic_24_heart)
         ),
         BottomNavItem(
             name = "Настройки",
-            icon = ImageVector.vectorResource(R.drawable.ic_24_heart)//Icons.Default.Settings
+            icon = ImageVector.vectorResource(R.drawable.ic_24_heart)
         )
     )
 
