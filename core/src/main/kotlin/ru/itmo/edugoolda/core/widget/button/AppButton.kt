@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
@@ -21,9 +22,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.itmo.edugoolda.core.R
 import ru.itmo.edugoolda.core.theme.AppTheme
 import ru.itmo.edugoolda.core.theme.custom.CustomTheme
 
@@ -142,6 +145,7 @@ private fun AppButtonPreview() {
                 onClick = {},
                 isEnabled = false
             )
+
             AppButton(
                 modifier = Modifier.fillMaxWidth(),
                 buttonType = ButtonType.Primary,
@@ -153,6 +157,31 @@ private fun AppButtonPreview() {
                     text = "Add",
                     style = CustomTheme.typography.button.bold,
                 )
+            }
+            AppButton(
+                modifier = Modifier.fillMaxWidth(),
+                buttonType = ButtonType.Primary,
+                onClick = {},
+                contentPadding = PaddingValues(12.dp)
+            ) {
+                Text(
+                    text = "Next",
+                    style = CustomTheme.typography.button.bold,
+                )
+                Icon(modifier = Modifier.padding(start=12.dp), painter = painterResource(R.drawable.ic_24_app_button_path), contentDescription = null)
+
+            }
+            AppButton(
+                modifier = Modifier.size(56.dp),
+                buttonType = ButtonType.Primary,
+                onClick = {},
+                shape = CircleShape,
+                contentPadding = PaddingValues(12.dp)
+
+            ) {
+
+                Icon(imageVector = Icons.Default.Add, contentDescription = null)
+
             }
         }
     }
