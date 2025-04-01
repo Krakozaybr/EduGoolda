@@ -4,6 +4,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import ru.itmo.edugoolda.core.theme.custom.BodyTypography
+import ru.itmo.edugoolda.core.theme.custom.BottomBarTypography
 import ru.itmo.edugoolda.core.theme.custom.ButtonTypography
 import ru.itmo.edugoolda.core.theme.custom.CaptionTypography
 import ru.itmo.edugoolda.core.theme.custom.CustomTypography
@@ -26,6 +27,12 @@ val AppTypography = CustomTypography(
         )
     ),
     button = ButtonTypography(
+        bold = TextStyle(
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold
+        )
+    ),
+    bottomBar = BottomBarTypography(
         bold = TextStyle(
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold

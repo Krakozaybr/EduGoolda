@@ -7,7 +7,8 @@ data class CustomTypography(
     val title: TitleTypography,
     val body: BodyTypography,
     val caption: CaptionTypography,
-    val button: ButtonTypography
+    val button: ButtonTypography,
+    val bottomBar : BottomBarTypography
 )
 
 data class TitleTypography(
@@ -25,5 +26,9 @@ data class CaptionTypography(
 data class ButtonTypography(
     val bold: TextStyle
 )
+data class BottomBarTypography(
+    val bold: TextStyle
+)
+
 
 val LocalCustomTypography = staticCompositionLocalOf<CustomTypography?> { null }

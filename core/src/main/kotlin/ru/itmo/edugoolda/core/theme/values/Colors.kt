@@ -3,6 +3,7 @@ package ru.itmo.edugoolda.core.theme.values
 import androidx.compose.ui.graphics.Color
 import ru.itmo.edugoolda.core.theme.custom.BackgroundColors
 import ru.itmo.edugoolda.core.theme.custom.BorderColors
+import ru.itmo.edugoolda.core.theme.custom.BottomBarColors
 import ru.itmo.edugoolda.core.theme.custom.ButtonColors
 import ru.itmo.edugoolda.core.theme.custom.CustomColors
 import ru.itmo.edugoolda.core.theme.custom.IconColors
@@ -36,6 +37,13 @@ val LightAppColors = CustomColors(
         primaryDisabled = Color(0xFF6750A4).copy(alpha = 0.4f),
         secondary = Color(0xFFFFFFFF),
         secondaryDisabled = Color(0xFFFFFFFF).copy(alpha = 0.4f)
+    ),
+    bottomBar = BottomBarColors(
+        selectedIconColor = Color.Gray,
+        selectedTextColor = Color.Black,
+        unselectedIconColor = Color.Gray,
+        unselectedTextColor = Color.Black,
+        indicatorColor = Color(0xFF007DBC)
     ),
     border = BorderColors(
         primary = Color(0xFF000000),
