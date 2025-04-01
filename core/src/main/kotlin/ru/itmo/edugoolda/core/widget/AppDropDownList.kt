@@ -22,56 +22,55 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
-import ru.itmo.edugoolda.core.theme.values.LightAppColors
+import ru.itmo.edugoolda.core.theme.custom.CustomTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppDropDownList(
     onItemClick: (String) -> Unit, // { selectedOption = option; expanded = false }
-    selectedOption: String,
     options: List<String>,
-    defaultTextFieldValue: String,
     modifier: Modifier = Modifier,
+    selectedOption: String? = null,
 ) {
     var isExpanded by remember { mutableStateOf(false) }
 
     Column(modifier = modifier.padding(24.dp)) {
         ExposedDropdownMenuBox(
             expanded = isExpanded,
-            onExpandedChange = { isExpanded = !isExpanded },
+            onExpandedChange = { isExpanded = it },
             modifier = Modifier.fillMaxWidth()
         ) {
             OutlinedTextField(
                 shape = RectangleShape,
-                value = selectedOption.ifEmpty { defaultTextFieldValue },
+                value = selectedOption ?: "",
                 onValueChange = {},
                 readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded) },
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color.Transparent,
                     unfocusedBorderColor = Color.Transparent,
-                    focusedContainerColor = LightAppColors.background.screen,
-                    unfocusedContainerColor = LightAppColors.background.screen,
-                    focusedTextColor = LightAppColors.text.primary,
-                    unfocusedTextColor = LightAppColors.text.primary
+                    focusedContainerColor = CustomTheme.colors.background.screen,
+                    unfocusedContainerColor = CustomTheme.colors.background.screen,
+                    focusedTextColor = CustomTheme.colors.text.primary,
+                    unfocusedTextColor = CustomTheme.colors.text.primary
                 ),
 
                 modifier = Modifier
-                    .border(width = 1.dp, color = LightAppColors.border.outlinedTextField)
+                    .border(width = 1.dp, color = CustomTheme.colors.border.outlinedTextField)
                     .menuAnchor()
             )
 
             ExposedDropdownMenu(
-                modifier = Modifier.background(LightAppColors.background.screen),
+                modifier = Modifier.background(CustomTheme.colors.background.screen),
                 expanded = isExpanded,
                 onDismissRequest = { isExpanded = false }
             ) {
                 options.forEach { option ->
                     DropdownMenuItem(
-                        modifier = Modifier.background(LightAppColors.background.screen),
-                        colors = MenuDefaults.itemColors(textColor = LightAppColors.text.primary),
-                        text = { Text(option) },
-                        onClick = { onItemClick(selectedOption) }
+                        modifier = Modifier.background(CustomTheme.colors.background.screen),
+                        colors = MenuDefaults.itemColors(textColor = CustomTheme.colors.text.primary),
+                        text = { Text(option, fontStyle = CustomTheme.typography.body.regular.fontStyle, color = CustomTheme.colors.text.primary) },
+                        onClick = { onItemClick(selectedOption!!) }
 
                     )
                 }
