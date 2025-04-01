@@ -22,66 +22,56 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
+import ru.itmo.edugoolda.core.theme.values.LightAppColors
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppDropDownList(
-    onExpandedChange: (Boolean) -> Unit, // {expanded = !expanded}
-    onDismissRequest: (Boolean) -> Unit, // { expanded = false }
-    onItemClick: (String, Boolean) -> Unit, // { selectedOption = option; expanded = false }
-    onValueChange: (String) -> Unit, // {}
-    isExpanded: Boolean,
-    selectedOptionString: String,
-    optionsList: List<String>,
+    onItemClick: (String) -> Unit, // { selectedOption = option; expanded = false }
+    selectedOption: String,
+    options: List<String>,
     defaultTextFieldValue: String,
-    itemColor: Color,
-    itemTextColor: Color,
-    selectedItemFieldColor: Color,
-    selectedItemFieldTextColor: Color,
-    borderColor: Color,
     modifier: Modifier = Modifier,
 ) {
-    var expanded by remember { mutableStateOf(isExpanded) }
-    var selectedOption by remember { mutableStateOf(selectedOptionString) }
-    val options by remember { mutableStateOf(optionsList) }
+    var isExpanded by remember { mutableStateOf(false) }
 
-    Column(modifier = Modifier.padding(24.dp)) {
+    Column(modifier = modifier.padding(24.dp)) {
         ExposedDropdownMenuBox(
-            expanded = expanded,
-            onExpandedChange = { onExpandedChange(expanded) },
+            expanded = isExpanded,
+            onExpandedChange = { isExpanded = !isExpanded },
             modifier = Modifier.fillMaxWidth()
         ) {
             OutlinedTextField(
                 shape = RectangleShape,
                 value = selectedOption.ifEmpty { defaultTextFieldValue },
-                onValueChange = { onValueChange(selectedOption) },
+                onValueChange = {},
                 readOnly = true,
-                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded) },
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color.Transparent,
                     unfocusedBorderColor = Color.Transparent,
-                    focusedContainerColor = selectedItemFieldColor,
-                    unfocusedContainerColor = selectedItemFieldColor,
-                    focusedTextColor = selectedItemFieldTextColor,
-                    unfocusedTextColor = selectedItemFieldTextColor
+                    focusedContainerColor = LightAppColors.background.screen,
+                    unfocusedContainerColor = LightAppColors.background.screen,
+                    focusedTextColor = LightAppColors.text.primary,
+                    unfocusedTextColor = LightAppColors.text.primary
                 ),
 
                 modifier = Modifier
-                    .border(width = 1.dp, color = borderColor)
+                    .border(width = 1.dp, color = LightAppColors.border.outlinedTextField)
                     .menuAnchor()
             )
 
             ExposedDropdownMenu(
-                modifier = Modifier.background(itemColor),
-                expanded = expanded,
-                onDismissRequest = { onDismissRequest(expanded) }
+                modifier = Modifier.background(LightAppColors.background.screen),
+                expanded = isExpanded,
+                onDismissRequest = { isExpanded = false }
             ) {
                 options.forEach { option ->
                     DropdownMenuItem(
-                        modifier = Modifier.background(itemColor),
-                        colors = MenuDefaults.itemColors(textColor = itemTextColor),
+                        modifier = Modifier.background(LightAppColors.background.screen),
+                        colors = MenuDefaults.itemColors(textColor = LightAppColors.text.primary),
                         text = { Text(option) },
-                        onClick = { onItemClick(selectedOption, expanded) }
+                        onClick = { onItemClick(selectedOption) }
 
                     )
                 }
