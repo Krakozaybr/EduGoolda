@@ -34,7 +34,7 @@ val AppTypography = CustomTypography(
     ),
     bottomBar = BottomBarTypography(
         bold = TextStyle(
-            fontSize = 16.sp,
+            fontSize = 12.sp,
             fontWeight = FontWeight.Bold
         )
     )

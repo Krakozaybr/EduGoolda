@@ -9,7 +9,7 @@ data class CustomColors(
     val text: TextColors,
     val icon: IconColors,
     val button: ButtonColors,
-    val bottomBar : BottomBarColors,
+    val bottomBar: BottomBarColors,
     val border: BorderColors,
     val textField: TextFieldColors,
 )
@@ -49,7 +49,7 @@ data class BottomBarColors(
     val selectedTextColor: Color,
     val unselectedIconColor: Color,
     val unselectedTextColor: Color,
-    val indicatorColor: Color
+    val indicatorColor: Color,
 )
 
 data class TextFieldColors(

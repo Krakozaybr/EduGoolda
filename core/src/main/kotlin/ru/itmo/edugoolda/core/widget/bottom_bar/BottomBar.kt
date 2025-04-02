@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.res.vectorResource
 import ru.itmo.edugoolda.core.R
-
+import ru.itmo.edugoolda.core.theme.AppTheme
 import ru.itmo.edugoolda.core.widget.bottom_bar.BottomBarDefaults
 
 data class BottomNavItem(
@@ -35,7 +35,7 @@ fun BottomNavigationBar(
     modifier: Modifier = Modifier
 
 ) {
-    var selectedItem by remember { mutableIntStateOf(0)  }
+    var selectedItem by remember { mutableIntStateOf(0) }
 
     NavigationBar(
         modifier = modifier.fillMaxWidth(),
@@ -58,7 +58,7 @@ fun BottomNavigationBar(
                 label = {
                     Text(
                         text = item.name,
-//                        style = BottomBarDefaults.textStyle
+                        style = BottomBarDefaults.textStyle
                     )
                 },
                 alwaysShowLabel = true,
@@ -72,30 +72,34 @@ fun BottomNavigationBar(
 @Preview(showBackground = true)
 @Composable
 fun BottomNavigationBarPreview() {
-    val items = listOf(
-        BottomNavItem(
-            name = "Главная",
-            icon = ImageVector.vectorResource(R.drawable.ic_24_heart)
-        ),
-        BottomNavItem(
-            name = "Избранное",
-            icon = ImageVector.vectorResource(R.drawable.ic_24_heart)
-        ),
-        BottomNavItem(
-            name = "Профиль",
-            icon = ImageVector.vectorResource(R.drawable.ic_24_heart)
-        ),
-        BottomNavItem(
-            name = "Настройки",
-            icon = ImageVector.vectorResource(R.drawable.ic_24_heart)
+    AppTheme {
+        val items = listOf(
+            BottomNavItem(
+                name = "Главная",
+                icon = ImageVector.vectorResource(R.drawable.ic_24_heart)
+            ),
+            BottomNavItem(
+                name = "Избранное",
+                icon = ImageVector.vectorResource(R.drawable.ic_24_heart)
+            ),
+            BottomNavItem(
+                name = "Профиль",
+                icon = ImageVector.vectorResource(R.drawable.ic_24_heart)
+            ),
+            BottomNavItem(
+                name = "Настройки",
+                icon = ImageVector.vectorResource(R.drawable.ic_24_heart)
+            )
         )
-    )
 
-    BottomNavigationBar(
-        items = items,
-        onItemClick = { item ->
+        BottomNavigationBar(
+            items = items,
+            onItemClick = { item ->
 
-            println("Clicked on ${item.name}")
-        }
-    )
+                println("Clicked on ${item.name}")
+            }
+        )
+
+    }
+
 }

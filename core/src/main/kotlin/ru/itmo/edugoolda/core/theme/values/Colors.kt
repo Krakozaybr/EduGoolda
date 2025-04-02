@@ -39,10 +39,10 @@ val LightAppColors = CustomColors(
         secondaryDisabled = Color(0xFFFFFFFF).copy(alpha = 0.4f)
     ),
     bottomBar = BottomBarColors(
-        selectedIconColor = Color.Gray,
-        selectedTextColor = Color.Black,
-        unselectedIconColor = Color.Gray,
-        unselectedTextColor = Color.Black,
+        selectedIconColor = Color(0xFF001018),
+        selectedTextColor = Color(0xFF001018),
+        unselectedIconColor = Color(0xFF687787),
+        unselectedTextColor = Color(0xFF687787),
         indicatorColor = Color(0xFF007DBC)
     ),
     border = BorderColors(

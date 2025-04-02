@@ -15,7 +15,6 @@ import ru.itmo.edugoolda.core.theme.custom.CustomTheme
 object BottomBarDefaults {
 
 
-
     @Stable
     val textStyle: TextStyle
         @Composable
@@ -24,13 +23,13 @@ object BottomBarDefaults {
     @Stable
     @Composable
     fun colors(): NavigationBarItemColors = NavigationBarItemDefaults.colors(
-        selectedIconColor = Color.Black,
-        selectedTextColor = Color.Black,
-        unselectedIconColor = Color.Black,
-        unselectedTextColor = Color.Black,
-        indicatorColor = Color(0xFF007DBC)
+        selectedIconColor = CustomTheme.colors.bottomBar.selectedIconColor,
+        selectedTextColor = CustomTheme.colors.bottomBar.selectedTextColor,
+        unselectedIconColor = CustomTheme.colors.bottomBar.unselectedIconColor,
+        unselectedTextColor = CustomTheme.colors.bottomBar.unselectedTextColor,
+        indicatorColor = CustomTheme.colors.bottomBar.indicatorColor,
 
-    )
+        )
 
 
 }
