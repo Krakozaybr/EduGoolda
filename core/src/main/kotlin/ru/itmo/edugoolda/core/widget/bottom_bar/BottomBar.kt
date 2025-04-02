@@ -20,7 +20,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.res.vectorResource
 import ru.itmo.edugoolda.core.R
 import ru.itmo.edugoolda.core.theme.AppTheme
-import ru.itmo.edugoolda.core.widget.bottom_bar.BottomBarDefaults
+
 
 data class BottomNavItem(
     val name: String,

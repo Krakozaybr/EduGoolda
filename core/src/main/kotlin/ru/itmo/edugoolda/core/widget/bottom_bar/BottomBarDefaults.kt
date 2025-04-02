@@ -6,7 +6,6 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import ru.itmo.edugoolda.core.theme.custom.CustomTheme
 
