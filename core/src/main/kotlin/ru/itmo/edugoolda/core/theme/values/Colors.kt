@@ -39,7 +39,8 @@ val LightAppColors = CustomColors(
     ),
     border = BorderColors(
         primary = Color(0xFF000000),
-        error = Color(0xFFB00020)
+        error = Color(0xFFB00020),
+        outlinedTextField = Color(0xFF8996A2)
     ),
     textField = TextFieldColors(
         background = Color(0xFFF2EBE3),
