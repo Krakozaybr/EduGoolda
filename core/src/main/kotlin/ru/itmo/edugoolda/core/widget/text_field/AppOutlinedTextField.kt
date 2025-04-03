@@ -17,19 +17,19 @@ fun AppOutlinedTextField(
     defaultValue: String? = null,
 ) {
     OutlinedTextField(
-    shape = RectangleShape,
-    value = defaultValue ?: "",
-    onValueChange = { text -> onTextChange(text) },
-    colors = OutlinedTextFieldDefaults.colors(
-    focusedBorderColor = Color.Transparent,
-    unfocusedBorderColor = Color.Transparent,
-    focusedContainerColor = CustomTheme.colors.background.screen,
-    unfocusedContainerColor = CustomTheme.colors.background.screen,
-    focusedTextColor = CustomTheme.colors.text.primary,
-    unfocusedTextColor = CustomTheme.colors.text.primary
-    ),
+        shape = RectangleShape,
+        value = defaultValue ?: "",
+        onValueChange = { text -> onTextChange(text) },
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedBorderColor = Color.Transparent,
+            unfocusedBorderColor = Color.Transparent,
+            focusedContainerColor = CustomTheme.colors.background.screen,
+            unfocusedContainerColor = CustomTheme.colors.background.screen,
+            focusedTextColor = CustomTheme.colors.text.primary,
+            unfocusedTextColor = CustomTheme.colors.text.primary
+        ),
 
-    modifier = modifier
-    .border(width = 1.dp, color = CustomTheme.colors.border.outlinedTextField)
+        modifier = modifier
+            .border(width = 1.dp, color = CustomTheme.colors.border.outlinedTextField)
     )
 }
