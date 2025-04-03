@@ -3,8 +3,9 @@ package ru.itmo.edugoolda.core.theme.values
 import androidx.compose.ui.graphics.Color
 import ru.itmo.edugoolda.core.theme.custom.BackgroundColors
 import ru.itmo.edugoolda.core.theme.custom.BorderColors
-import ru.itmo.edugoolda.core.theme.custom.BottomBarColors
+
 import ru.itmo.edugoolda.core.theme.custom.ButtonColors
+import ru.itmo.edugoolda.core.theme.custom.ContentColors
 import ru.itmo.edugoolda.core.theme.custom.CustomColors
 import ru.itmo.edugoolda.core.theme.custom.IconColors
 import ru.itmo.edugoolda.core.theme.custom.TextColors
@@ -13,8 +14,14 @@ import ru.itmo.edugoolda.core.theme.custom.TextFieldColors
 val LightAppColors = CustomColors(
     isLight = true,
     background = BackgroundColors(
+        backgroundPrimary = Color(0xFFFFFFFF),
         screen = Color(0xFFFFFFFF),
         toast = Color(0xFF000000),
+    ),
+    content = ContentColors(
+        contentActive = Color(0xFF007DBC),
+        contentPrimary = Color(0xFF001018),
+        contentTertiary = Color(0xFF687787),
     ),
     text = TextColors(
         primary = Color(0xFF000000),
@@ -38,13 +45,7 @@ val LightAppColors = CustomColors(
         secondary = Color(0xFFFFFFFF),
         secondaryDisabled = Color(0xFFFFFFFF).copy(alpha = 0.4f)
     ),
-    bottomBar = BottomBarColors(
-        selectedIconColor = Color(0xFF001018),
-        selectedTextColor = Color(0xFF001018),
-        unselectedIconColor = Color(0xFF687787),
-        unselectedTextColor = Color(0xFF687787),
-        indicatorColor = Color(0xFF007DBC)
-    ),
+
     border = BorderColors(
         primary = Color(0xFF000000),
         error = Color(0xFFB00020)
