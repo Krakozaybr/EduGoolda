@@ -69,8 +69,14 @@ fun AppDropDownList(
                     DropdownMenuItem(
                         modifier = Modifier.background(CustomTheme.colors.background.screen),
                         colors = MenuDefaults.itemColors(textColor = CustomTheme.colors.text.primary),
-                        text = { Text(option, fontStyle = CustomTheme.typography.body.regular.fontStyle, color = CustomTheme.colors.text.primary) },
-                        onClick = { onItemClick(selectedOption!!) }
+                        text = {
+                            Text(
+                                text = option,
+                                fontStyle = CustomTheme.typography.body.regular.fontStyle,
+                                color = CustomTheme.colors.text.primary
+                            )
+                        },
+                        onClick = { onItemClick(option) }
 
                     )
                 }
