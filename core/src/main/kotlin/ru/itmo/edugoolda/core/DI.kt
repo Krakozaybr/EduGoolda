@@ -7,6 +7,7 @@ import me.aartikov.replica.network.AndroidNetworkConnectivityProvider
 import me.aartikov.replica.network.NetworkConnectivityProvider
 import org.koin.core.component.get
 import org.koin.dsl.module
+import ru.itmo.edugoolda.core.BuildConfig
 import ru.itmo.edugoolda.core.activity.ActivityProvider
 import ru.itmo.edugoolda.core.debug_tools.DebugTools
 import ru.itmo.edugoolda.core.debug_tools.RealDebugTools
