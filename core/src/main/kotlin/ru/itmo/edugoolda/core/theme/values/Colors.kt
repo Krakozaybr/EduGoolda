@@ -18,8 +18,8 @@ val LightAppColors = CustomColors(
     text = TextColors(
         primary = Color(0xFF000000),
         primaryDisabled = Color(0xFF000000).copy(alpha = 0.4f),
-        secondary = Color(0xFF797979),
-        secondaryDisabled = Color(0xFF797979).copy(alpha = 0.4f),
+        secondary = Color(0xFF8996A2),
+        secondaryDisabled = Color(0xFF8996A2).copy(alpha = 0.4f),
         invert = Color(0xFFFFFFFF),
         invertDisabled = Color(0xFFFFFFFF).copy(alpha = 0.4f),
         error = Color(0xFFB00020)
