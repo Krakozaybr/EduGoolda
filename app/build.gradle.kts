@@ -90,6 +90,7 @@ dependencies {
     // Modules
     implementation(project(":core"))
     implementation(project(":features:root"))
+    implementation(project(":data:general"))
 
     // UI
     implementation(libs.activity.compose)
