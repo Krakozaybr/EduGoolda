@@ -1,6 +1,7 @@
 package ru.itmo.edugoolda.core.widget.bottom_bar
 
 import android.annotation.SuppressLint
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +23,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,32 +34,26 @@ import ru.itmo.edugoolda.core.theme.custom.CustomTheme
 
 data class BottomBarItem(
     val title: String,
-    val icon: Int
+    @DrawableRes val iconResId: Int
 )
 
 @Composable
 fun CustomBottomBar(
     items: List<BottomBarItem>,
-    selectedItem: Int,
+    selectedItemIndex: Int,
     onItemClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
-    backgroundColor: Color = CustomTheme.colors.background.backgroundPrimary,
-    selectedItemIconColor: Color = CustomTheme.colors.content.contentActive,
-    selectedItemTextColor: Color = CustomTheme.colors.content.contentPrimary,
-    unselectedItemIconColor: Color = CustomTheme.colors.content.contentTertiary,
-    unselectedItemTextColor: Color = CustomTheme.colors.content.contentTertiary,
 ) {
 
     Box(
         modifier = modifier
             .fillMaxWidth()
             .height(72.dp)
-
     ) {
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .background(backgroundColor)
+                .background(CustomTheme.colors.background.backgroundPrimary)
                 .selectableGroup(),
             verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.SpaceEvenly
@@ -67,11 +61,7 @@ fun CustomBottomBar(
             items.forEachIndexed { index, item ->
                 BottomBarItem(
                     item = item,
-                    isSelected = index == selectedItem,
-                    selectedIconColor = selectedItemIconColor,
-                    selectedTextColor = selectedItemTextColor,
-                    unselectedIconColor = unselectedItemIconColor,
-                    unselectedTextColor = unselectedItemTextColor,
+                    isSelected = index == selectedItemIndex,
                     onClick = { onItemClick(index) },
                     modifier = Modifier.weight(.1f)
                 )
@@ -84,10 +74,6 @@ fun CustomBottomBar(
 private fun BottomBarItem(
     item: BottomBarItem,
     isSelected: Boolean,
-    selectedIconColor: Color,
-    selectedTextColor: Color,
-    unselectedIconColor: Color,
-    unselectedTextColor: Color,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -96,20 +82,18 @@ private fun BottomBarItem(
             .clickable(onClick = onClick)
             .padding(vertical = 8.dp)
             .fillMaxSize(),
-
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
         Icon(
-            painter = painterResource(id = item.icon),
+            painter = painterResource(id = item.iconResId),
             contentDescription = item.title,
-            tint = if (isSelected) selectedIconColor else unselectedIconColor,
+            tint = if (isSelected) CustomTheme.colors.content.contentActive else CustomTheme.colors.content.contentTertiary,
             modifier = Modifier.size(24.dp)
         )
-
         Text(
             text = item.title,
-            color = if (isSelected) selectedTextColor else unselectedTextColor,
+            color = if (isSelected) CustomTheme.colors.content.contentPrimary else CustomTheme.colors.content.contentTertiary,
             fontSize = 12.sp,
             textAlign = TextAlign.Center,
             style = CustomTheme.typography.caption.regular
@@ -131,7 +115,7 @@ private fun CustomBottomBarPreview() {
         var selectedItem by remember { mutableIntStateOf(0) }
         CustomBottomBar(
             items = items,
-            selectedItem = selectedItem,
+            selectedItemIndex = selectedItem,
             onItemClick = { index ->
                 selectedItem = index
             },
