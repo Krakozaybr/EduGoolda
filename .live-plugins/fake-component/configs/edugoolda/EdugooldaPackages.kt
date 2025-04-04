@@ -1,3 +1,3 @@
-package configs.example
+package configs.edugoolda
 
 // TODO: define packages for your project

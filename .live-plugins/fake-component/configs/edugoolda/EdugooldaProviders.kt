@@ -1,4 +1,4 @@
-package configs.example
+package configs.edugoolda
 
 import fakes.codegen.config.PluginConfig
 import fakes.codegen.api.provide
@@ -16,6 +16,6 @@ import kotlinx.coroutines.flow.StateFlow
 import org.jetbrains.kotlin.name.FqName
 import fakes.codegen.api.DefaultValueProvider
 
-val exampleProviders: List<DefaultValueProvider> = listOf(
+val edugooldaProviders: List<DefaultValueProvider> = listOf(
     // TODO: Define your providers
 )

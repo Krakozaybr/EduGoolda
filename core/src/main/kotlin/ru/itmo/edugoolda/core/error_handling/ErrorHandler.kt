@@ -4,7 +4,6 @@ import co.touchlab.kermit.Logger
 import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
-import ru.itmo.edugoolda.core.error_handling.errorMessage
 import ru.itmo.edugoolda.core.message.data.MessageService
 import ru.itmo.edugoolda.core.message.domain.Message
 import ru.itmo.edugoolda.core.utils.e

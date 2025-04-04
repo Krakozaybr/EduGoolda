@@ -20,7 +20,7 @@ object EdugooldaConfig : PluginConfig {
     ) = "Component" in interfaceName
 
     override val providers = buildList {
-        addAll(exampleProviders)
+        addAll(edugooldaProviders)
         addAll(commonProviders)
     }
 }

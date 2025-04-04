@@ -51,6 +51,7 @@ data class TextFieldColors(
 data class BorderColors(
     val primary: Color,
     val error: Color,
+    val outlinedTextField: Color
 )
 
 val LocalCustomColors = staticCompositionLocalOf<CustomColors?> { null }
