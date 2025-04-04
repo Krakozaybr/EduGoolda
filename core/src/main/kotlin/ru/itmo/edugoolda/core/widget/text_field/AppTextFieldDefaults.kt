@@ -22,7 +22,7 @@ import ru.itmo.edugoolda.core.theme.custom.CustomTheme
 object AppTextFieldDefaults {
 
     @Stable
-    val shape = RoundedCornerShape(28.dp)
+    val shape = RoundedCornerShape(4.dp)
 
     @Stable
     val textStyle: TextStyle
