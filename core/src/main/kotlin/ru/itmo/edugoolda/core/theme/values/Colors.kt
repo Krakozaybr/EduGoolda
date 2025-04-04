@@ -38,12 +38,12 @@ val LightAppColors = CustomColors(
         secondaryDisabled = Color(0xFFFFFFFF).copy(alpha = 0.4f)
     ),
     border = BorderColors(
-        primary = Color(0xFF000000),
+        primary = Color(0xFF8996A2),
         error = Color(0xFFB00020),
         outlinedTextField = Color(0xFF8996A2)
     ),
     textField = TextFieldColors(
-        background = Color(0xFFF2EBE3),
+        background = Color(0xFFFFFFFF),
         backgroundDisabled = Color(0xFFF2EBE3).copy(alpha = 0.4f)
     )
 )
