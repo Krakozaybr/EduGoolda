@@ -168,8 +168,11 @@ private fun AppButtonPreview() {
                     text = "Next",
                     style = CustomTheme.typography.button.bold,
                 )
-                Icon(modifier = Modifier.padding(start=12.dp), painter = painterResource(R.drawable.ic_24_app_button_path), contentDescription = null)
-
+                Icon(
+                    modifier = Modifier.padding(start = 12.dp),
+                    painter = painterResource(R.drawable.ic_24_app_button_path),
+                    contentDescription = null
+                )
             }
             AppButton(
                 modifier = Modifier.size(56.dp),
@@ -177,11 +180,8 @@ private fun AppButtonPreview() {
                 onClick = {},
                 shape = CircleShape,
                 contentPadding = PaddingValues(12.dp)
-
             ) {
-
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
-
             }
         }
     }
