@@ -1,10 +1,9 @@
-package ru.itmo.edugoolda.data.auth.data.dto
+package ru.itmo.edugoolda.data.auth.internal.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class LoginResponse(
-    @SerialName("access_token") val accessToken: String,
+internal data class RefreshRequest(
     @SerialName("refresh_token") val refreshToken: String
 )

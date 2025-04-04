@@ -1,10 +1,10 @@
-package ru.itmo.edugoolda.data.auth.data.dto
+package ru.itmo.edugoolda.data.auth.internal.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RegisterRequest(
+internal data class RegisterRequest(
     @SerialName("email") val email: String,
     @SerialName("password") val password: String,
     @SerialName("name") val name: String,

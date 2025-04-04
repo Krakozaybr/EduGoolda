@@ -1,7 +1,7 @@
-package ru.itmo.edugoolda.data.auth.data
+package ru.itmo.edugoolda.data.auth.api
 
-import ru.itmo.edugoolda.data.auth.domain.Email
-import ru.itmo.edugoolda.data.auth.domain.Password
+import ru.itmo.edugoolda.data.auth.api.domain.Email
+import ru.itmo.edugoolda.data.auth.api.domain.Password
 
 interface AuthRepository {
     suspend fun login(email: Email, password: Password)

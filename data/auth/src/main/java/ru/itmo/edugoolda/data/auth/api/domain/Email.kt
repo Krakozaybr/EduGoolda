@@ -1,4 +1,4 @@
-package ru.itmo.edugoolda.data.auth.domain
+package ru.itmo.edugoolda.data.auth.api.domain
 
 import kotlinx.serialization.Serializable
 

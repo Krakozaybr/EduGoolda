@@ -5,12 +5,12 @@ import org.koin.dsl.bind
 import org.koin.dsl.binds
 import org.koin.dsl.module
 import ru.itmo.edugoolda.core.network.NetworkApiFactory
-import ru.itmo.edugoolda.data.auth.data.AuthInterceptor
-import ru.itmo.edugoolda.data.auth.data.AuthRepository
-import ru.itmo.edugoolda.data.auth.data.AuthRepositoryImpl
-import ru.itmo.edugoolda.data.auth.data.tokens.AuthTokensProvider
-import ru.itmo.edugoolda.data.auth.data.tokens.AuthTokensRefresher
-import ru.itmo.edugoolda.data.auth.data.tokens.AuthTokensStorage
+import ru.itmo.edugoolda.data.auth.api.AuthRepository
+import ru.itmo.edugoolda.data.auth.internal.AuthInterceptor
+import ru.itmo.edugoolda.data.auth.internal.AuthRepositoryImpl
+import ru.itmo.edugoolda.data.auth.internal.tokens.AuthTokensProvider
+import ru.itmo.edugoolda.data.auth.internal.tokens.AuthTokensRefresher
+import ru.itmo.edugoolda.data.auth.internal.tokens.AuthTokensStorage
 
 val dataAuthModule = module {
     singleOf(AuthTokensStorage::Base) binds arrayOf(

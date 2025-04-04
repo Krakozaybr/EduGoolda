@@ -1,4 +1,4 @@
-package ru.itmo.edugoolda.data.auth.data
+package ru.itmo.edugoolda.data.auth.internal
 
 import io.ktor.client.call.HttpClientCall
 import io.ktor.client.plugins.Sender
@@ -6,11 +6,12 @@ import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import ru.itmo.edugoolda.core.error_handling.UnauthorizedException
 import ru.itmo.edugoolda.core.network.NetworkApiFactory
-import ru.itmo.edugoolda.data.auth.data.tokens.AuthTokensProvider
-import ru.itmo.edugoolda.data.auth.data.tokens.AuthTokensRefresher
+import ru.itmo.edugoolda.data.auth.internal.tokens.AuthTokensProvider
+import ru.itmo.edugoolda.data.auth.internal.tokens.AuthTokensRefresher
 
-class AuthInterceptor(
+internal class AuthInterceptor(
     authTokensRefresher: Lazy<AuthTokensRefresher>,
     private val authTokensProvider: AuthTokensProvider
 ) : NetworkApiFactory.Interceptor {
@@ -45,7 +46,9 @@ class AuthInterceptor(
         if (currentTokens != null && oldToken != currentTokens.accessToken) {
             currentTokens
         } else {
-            refresher.refreshTokens()
+            refresher.refreshTokens(
+                currentTokens?.refreshToken ?: throw UnauthorizedException(null)
+            )
         }.accessToken
     }
 }

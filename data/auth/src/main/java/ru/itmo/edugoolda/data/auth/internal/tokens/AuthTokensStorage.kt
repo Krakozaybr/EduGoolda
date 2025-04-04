@@ -1,15 +1,14 @@
-package ru.itmo.edugoolda.data.auth.data.tokens
+package ru.itmo.edugoolda.data.auth.internal.tokens
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.runBlocking
 import ru.itmo.edugoolda.core.settings.SettingsFactory
-import ru.itmo.edugoolda.data.auth.domain.AuthTokens
+import ru.itmo.edugoolda.data.auth.internal.domain.AuthTokens
 
 internal interface AuthTokensStorage {
 
     suspend fun clear()
     suspend fun save(tokens: AuthTokens)
-    suspend fun getTokens(): AuthTokens?
 
     class Base(
         settingsFactory: SettingsFactory
@@ -30,7 +29,7 @@ internal interface AuthTokensStorage {
             storage.putString(REFRESH_TOKEN_KEY, tokens.refreshToken)
         }
 
-        override suspend fun getTokens(): AuthTokens? {
+        private suspend fun getTokens(): AuthTokens? {
             return AuthTokens(
                 accessToken = storage.getString(ACCESS_TOKEN_KEY) ?: return null,
                 refreshToken = storage.getString(REFRESH_TOKEN_KEY) ?: return null,
