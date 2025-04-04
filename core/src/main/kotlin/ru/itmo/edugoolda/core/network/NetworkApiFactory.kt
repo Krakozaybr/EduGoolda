@@ -2,18 +2,15 @@ package ru.itmo.edugoolda.core.network
 
 import de.jensklingenberg.ktorfit.Ktorfit
 import io.ktor.client.HttpClient
-import io.ktor.client.call.HttpClientCall
 import io.ktor.client.engine.HttpClientEngine
-import io.ktor.client.plugins.HttpSend
 import io.ktor.client.plugins.HttpTimeout
-import io.ktor.client.plugins.Sender
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.plugins.plugin
-import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.serialization.kotlinx.json.json
+
+// import ru.mobileup.template.core.network.createKtorLogger
 
 /**
  * Creates implementations of Ktorfit APIs.
@@ -21,16 +18,11 @@ import io.ktor.serialization.kotlinx.json.json
 class NetworkApiFactory(
     private val loggingEnabled: Boolean,
     private val backendUrl: String,
-    private val httpClientEngine: HttpClientEngine,
-    private val interceptors: List<Interceptor>
+    private val httpClientEngine: HttpClientEngine
 ) {
     companion object {
         private const val CONNECT_TIMEOUT_MILLISECONDS = 30000L
         private const val READ_WRITE_TIMEOUT_MILLISECONDS = 60000L
-    }
-
-    fun interface Interceptor {
-        suspend fun intercept(sender: Sender, request: HttpRequestBuilder): HttpClientCall
     }
 
     private val json = createDefaultJson()
@@ -67,13 +59,11 @@ class NetworkApiFactory(
                 url(backendUrl)
             }
 
-            setupErrorConverter()
-        }.apply {
-            interceptors.forEach { interceptor ->
-                plugin(HttpSend).intercept {
-                    interceptor.intercept(this, it)
-                }
+            if (authorized) {
+                // TODO: install Auth component and set it up
             }
+
+            setupErrorConverter()
         }
     }
 
