@@ -1,6 +1,10 @@
 <resources>
     <!-- Common -->
     <string name="common_retry">Retry</string>
+    <string name="delete_group">Delete group</string>
+    <string name="delete_participant">Delete participant</string>
+    <string name="delete_group_message">Are you sure you want to delete the group «%s»? This action will delete all data associated with this group.</string>
+    <string name="delete_participant_message">Are you sure you want to delete participant «%s» from group «%s»? This action will result in the deletion of the student\'s assignment progress.</string>
 
     <!-- Errors -->
     <string name="error_unexpected">Something went wrong. The developers are already fixing the problem.</string>

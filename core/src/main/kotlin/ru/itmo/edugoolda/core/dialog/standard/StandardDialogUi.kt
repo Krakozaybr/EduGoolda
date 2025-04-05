@@ -9,15 +9,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import dev.icerock.moko.resources.compose.localized
+import dev.icerock.moko.resources.desc.desc
+import ru.itmo.edugoolda.core.theme.AppTheme
 import ru.itmo.edugoolda.core.theme.custom.CustomTheme
 
 @Composable
@@ -59,7 +63,7 @@ fun StandardDialog(dialogControl: StandardDialogControl) {
                             fontSize = 15.sp,
                             lineHeight = 21.sp
                         ),
-                        color = CustomTheme.colors.text.primary
+                        color = CustomTheme.colors.text.secondary
                     )
                 }
             } else {
@@ -102,7 +106,7 @@ private fun DialogButton(
             fontSize = 15.sp,
             lineHeight = 18.sp
         ),
-        color = CustomTheme.colors.text.primary,
+        color = CustomTheme.colors.button.primary,
         textAlign = TextAlign.Center,
         modifier = modifier
             .clickable {
@@ -112,4 +116,28 @@ private fun DialogButton(
             .padding(4.dp)
             .widthIn(min = 60.dp)
     )
+}
+
+@Preview(showSystemUi = false)
+@Composable
+private fun DialogWindow() {
+    val dialogControl = remember {
+        fakeStandardDialogControl(
+            StandardDialogData(
+                title = "Текст заголовка".desc(),
+                message = "Вы уверены, что хотите удалить что-то там? Это действие приведет к необратимым последствиям и искревлению пространства времени. Этот маленький маневр обойдется нам в 52 года.".desc(),
+                dismissButton = DialogButton(
+                    text = "Нет".desc(),
+                    action = {}
+                ),
+                confirmButton = DialogButton(
+                    text = "Да".desc(),
+                    action = {}
+                ),
+            )
+        )
+    }
+    AppTheme {
+        StandardDialog(dialogControl = dialogControl)
+    }
 }

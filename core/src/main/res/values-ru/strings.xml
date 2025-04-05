@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="common_retry">Обновить</string>
+    <string name="delete_group">Удаление группы</string>
+    <string name="delete_participant">Удаление участника</string>
+    <string name="delete_group_message">Вы уверены, что хотите удалить группу «%s»? Это действие приведет к удалению всех данных, связанных с этой группой.</string>
+    <string name="delete_participant_message">Вы уверены, что хотите удалить участника «%s» из группы «%s»? Это действие приведет к удалению прогресса выполнения заданий данным учеником.</string>
+    <string name="error_unexpected">Что-то пошло не так. Лапки девелоперов уже щелкают по кнопкам.</string>
+    <string name="error_no_internet_connection">Нет соединения с интернетом.</string>
+    <string name="error_unauthorized">Необходимо авторизоваться в приложении</string>
+    <string name="error_deserialization">Ошибка анализа данных. Разработчики уже исправляют проблему.</string>
+    <string name="error_server_unavailable">Не удалось подключиться к серверу. Повторите попытку позже.</string>
+    <string name="error_ssl_handshake">Не удалось установить соединение из-за настроек безопасности сети. Проверьте дату и время вашего устройства.</string>
+    <string name="error_server">Ошибка сервера. Попробуйте еще раз позже.</string>
+    <string name="error_matching_application_not_found">Приложений для выполнения действия не найдено.</string>
+</resources>
