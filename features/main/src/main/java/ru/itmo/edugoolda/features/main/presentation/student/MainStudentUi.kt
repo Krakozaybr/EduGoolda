@@ -1,5 +1,7 @@
 package ru.itmo.edugoolda.features.main.presentation.student
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -27,6 +29,7 @@ fun MainStudentUi(
 
     Scaffold(
         modifier = modifier,
+        contentWindowInsets = WindowInsets.navigationBars,
         content = {
             Children(stack, Modifier.padding(it)) {
                 when (val instance = it.instance) {

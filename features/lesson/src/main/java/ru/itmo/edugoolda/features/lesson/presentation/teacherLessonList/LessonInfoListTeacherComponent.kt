@@ -8,12 +8,11 @@ import ru.itmo.edugoolda.data.lesson.lesson_info.api.LessonInfoList
 interface LessonInfoListTeacherComponent {
     val lessonInfoState: StateFlow<PagedState<LessonInfoList>>
 
-    fun onEditClick(lessonId: LessonId)
-    fun onDeleteClick(lessonId: LessonId)
+    fun onLessonDetailsClick(lessonId: LessonId)
     fun onRefresh()
     fun onRetryClick()
     fun onLoadNext()
     interface Communication {
-        fun onEditLessonRequested(lessonId: LessonId)
+        fun onLessonDetailsRequested(lessonId: LessonId)
     }
 }

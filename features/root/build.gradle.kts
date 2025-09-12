@@ -11,6 +11,12 @@ android {
 }
 
 dependencies {
+    ksp(libs.ktorfit.ksp)
+
+    // Modules
+    implementation(project(":core"))
+    implementation(project(":features:auth"))
+    implementation(project(":features:main"))
     implementation(project(":data:group"))
     implementation(project(":data:lesson"))
     implementation(project(":data:solutions"))
@@ -19,12 +25,7 @@ dependencies {
     implementation(project(":features:join_requests"))
     implementation(project(":features:lesson"))
     implementation(project(":data:auth"))
-    ksp(libs.ktorfit.ksp)
-
-    // Modules
-    implementation(project(":core"))
-    implementation(project(":features:auth"))
-    implementation(project(":features:main"))
+    implementation(project(":features:solution"))
 
     // Kotlin
     implementation(libs.kotlinx.datetime)

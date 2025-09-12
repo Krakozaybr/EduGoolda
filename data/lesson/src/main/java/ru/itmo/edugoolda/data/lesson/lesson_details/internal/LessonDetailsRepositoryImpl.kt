@@ -86,8 +86,4 @@ internal class LessonDetailsRepositoryImpl(
         lessonDetailsApi.setSolutionStatus(solutionId.value, actionRequest)
         _solutionTeacherDetailsReplica.refresh(solutionId)
     }
-
-    override suspend fun deleteLessonTeacher(lessonId: LessonId) {
-        lessonDetailsApi.deleteLessonTeacher(lessonId.value)
-    }
 }

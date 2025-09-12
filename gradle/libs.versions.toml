@@ -38,6 +38,7 @@ appcompat = "1.6.1"
 material = "1.10.0"
 dataStore = "1.1.3"
 junitJunit = "4.12"
+foundationDesktop = "1.7.0"
 
 [libraries]
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "dateTime" }
@@ -113,6 +114,7 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 junit-junit = { group = "junit", name = "junit", version.ref = "junitJunit" }
+foundation-desktop = { group = "androidx.compose.foundation", name = "foundation-desktop", version.ref = "foundationDesktop" }
 
 [bundles]
 decompose = ["decompose-core", "decompose-compose"]

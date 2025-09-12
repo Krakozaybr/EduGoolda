@@ -13,7 +13,7 @@ interface LessonInfoApi {
         @Query("page_size") pageSize: Int,
         @Query("page") page: Int,
         @Query("group_id") groupId: String? = null,
-        @Query("page") query: String? = null,
+        @Query("query") query: String? = null,
     ): LessonInfoListResponse
 
     @DELETE("api/v1/lesson/{lessonUuid}")

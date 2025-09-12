@@ -6,8 +6,8 @@
     <string name="lesson_deadline_title">Deadline</string>
     <string name="teacher_solution_details_title">Solution information</string>
     <string name="lesson_checked_status">Solution is closed as checked</string>
-    <string name="solution_button_change_checked_type_to_reviewed">Set up as reviewed</string>
-    <string name="solution_button_change_checked_type_to_pending">Set up as pending</string>
+    <string name="solution_change_checked_type_to_reviewed">Solution marked as reviewed</string>
+    <string name="solution_change_checked_type_to_pending">Solution marked as pending</string>
     <string name="delete_lesson">Delete lesson</string>
     <string name="delete_lesson_message">Are you sure you want to delete the lesson «%s»? This action will delete all data associated with this lesson.</string>
     <string name="lesson_confirm">Yes</string>
@@ -20,4 +20,8 @@
     <string name="lesson_create_type_practical">Practical</string>
     <string name="lesson_create_type_title">Lesson type</string>
     <string name="lesson_add_group_button">Add group</string>
+    <string name="search_group">Search</string>
+    <string name="lesson_adding_group_title">Group adding</string>
+    <string name="lessons_list_empty_student">Oops, it\'s empty here…</string>
+    <string name="lessons_list_empty_teacher">You don\'t have any lessons,\ncreate a new one.</string>
 </resources>

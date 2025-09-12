@@ -8,6 +8,7 @@ import ru.itmo.edugoolda.core.theme.custom.ButtonColors
 import ru.itmo.edugoolda.core.theme.custom.ContentColors
 import ru.itmo.edugoolda.core.theme.custom.CustomColors
 import ru.itmo.edugoolda.core.theme.custom.IconColors
+import ru.itmo.edugoolda.core.theme.custom.MessageColors
 import ru.itmo.edugoolda.core.theme.custom.TextColors
 import ru.itmo.edugoolda.core.theme.custom.TextFieldColors
 
@@ -16,7 +17,7 @@ val LightAppColors = CustomColors(
     background = BackgroundColors(
         backgroundPrimary = Color(0xFFFFFFFF),
         screen = Color(0xFFFFFFFF),
-        toast = Color(0xFF000000),
+        toast = Color(0xFF5D5D5D),
     ),
     content = ContentColors(
         contentActive = Color(0xFF007DBC),
@@ -54,6 +55,11 @@ val LightAppColors = CustomColors(
     textField = TextFieldColors(
         background = Color(0xFFFFFFFF),
         backgroundDisabled = Color(0xFFFFFFFF)
+    ),
+
+    message = MessageColors(
+        primary = Color(0xFFBBDEFB),
+        secondary = Color(0xFFFFFFFF)
     )
 )
 

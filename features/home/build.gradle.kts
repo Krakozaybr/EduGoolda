@@ -20,6 +20,7 @@ dependencies {
     implementation(project(":data:solutions"))
     implementation(project(":data:lesson"))
     implementation(project(":data:user"))
+    implementation(project(":data:group"))
 
     // Kotlin
     implementation(libs.kotlinx.datetime)

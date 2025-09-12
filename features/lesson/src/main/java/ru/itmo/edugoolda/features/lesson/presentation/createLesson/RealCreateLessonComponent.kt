@@ -17,7 +17,7 @@ class RealCreateLessonComponent(
     componentContext: ComponentContext,
     private val communication: CreateLessonComponent.Communication,
     private val errorHandler: ErrorHandler,
-    private val lessonCreateRepository: LessonCreateRepository
+    private val lessonCreateRepository: LessonCreateRepository,
 ) : CreateLessonComponent, ComponentContext by componentContext {
     override val lessonNameInputControl = InputControl(componentScope)
     override val descriptionInputControl = InputControl(componentScope)
@@ -25,10 +25,13 @@ class RealCreateLessonComponent(
     override val isCreatingLessonProgress = MutableStateFlow(false)
     override val groupListState = MutableStateFlow(listOf<GroupInfo>())
     override val isCreateLessonButtonEnabled =
-        computed(lessonNameInputControl.text, descriptionInputControl.text, groupListState) { text, description, groupList ->
+        computed(
+            lessonNameInputControl.text,
+            descriptionInputControl.text,
+            groupListState
+        ) { text, description, groupList ->
             text.isNotBlank() && description.isNotBlank() && groupList.isNotEmpty()
         }
-
 
     override fun onCreateLesson() {
         if (isCreatingLessonProgress.value || !isCreateLessonButtonEnabled.value) return
@@ -39,7 +42,7 @@ class RealCreateLessonComponent(
                     name = lessonNameInputControl.text.value,
                     description = descriptionInputControl.text.value,
                     groupIdList = groupListState.value.map { it.id },
-                    isEstimatable = when(selectedLessonType.value) {
+                    isEstimatable = when (selectedLessonType.value) {
                         LessonType.Informational -> false
                         LessonType.Practical -> true
                     },
@@ -60,7 +63,7 @@ class RealCreateLessonComponent(
     }
 
     override fun onGroupAdded(groupInfo: GroupInfo) {
-        if (!groupListState.value.any { it.id == groupInfo.id}) {
+        if (!groupListState.value.any { it.id == groupInfo.id }) {
             groupListState.value += listOf(groupInfo)
         }
     }

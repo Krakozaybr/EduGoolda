@@ -9,5 +9,5 @@ internal interface LessonCreateApi {
     @POST("api/v1/lesson")
     suspend fun createLesson(
         @Body createLessonRequest: CreateLessonRequest
-    ) : LessonFullDetailsDTO
+    ): LessonFullDetailsDTO
 }

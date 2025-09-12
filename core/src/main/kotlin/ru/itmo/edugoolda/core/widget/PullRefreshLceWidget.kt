@@ -27,6 +27,7 @@ fun <T : Any> PullRefreshLceWidget(
     onRefresh: () -> Unit,
     onRetryClick: () -> Unit,
     modifier: Modifier = Modifier,
+    isShowCircularProgressIndicator: Boolean = true,
     content: @Composable (data: T, refreshing: Boolean) -> Unit
 ) {
     LceWidget(
@@ -51,12 +52,14 @@ fun <T : Any> PullRefreshLceWidget(
             },
             state = pullRefreshState,
             indicator = {
-                PullToRefreshDefaults.Indicator(
-                    state = pullRefreshState,
-                    isRefreshing = isRefreshing,
-                    color = CustomTheme.colors.icon.primary,
-                    modifier = Modifier.align(Alignment.TopCenter),
-                )
+                if (isShowCircularProgressIndicator) {
+                    PullToRefreshDefaults.Indicator(
+                        state = pullRefreshState,
+                        isRefreshing = isRefreshing,
+                        color = CustomTheme.colors.icon.primary,
+                        modifier = Modifier.align(Alignment.TopCenter),
+                    )
+                }
             },
         ) {
             content(data, refreshing && !pullGestureOccurred)

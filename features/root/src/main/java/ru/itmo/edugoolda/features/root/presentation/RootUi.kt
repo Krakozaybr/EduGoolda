@@ -17,7 +17,8 @@ import ru.itmo.edugoolda.core.utils.LocalSystemBarsSettings
 import ru.itmo.edugoolda.core.utils.accumulate
 import ru.itmo.edugoolda.features.auth.presentation.auth.AuthUi
 import ru.itmo.edugoolda.features.group.GroupUi
-import ru.itmo.edugoolda.features.join_requests.presentation.JoinRequestsUi
+import ru.itmo.edugoolda.features.join_requests.presentation.student.JoinRequestsStudentUi
+import ru.itmo.edugoolda.features.join_requests.presentation.teacher.JoinRequestsTeacherUi
 import ru.itmo.edugoolda.features.lesson.LessonsUi
 import ru.itmo.edugoolda.features.main.presentation.student.MainStudentUi
 import ru.itmo.edugoolda.features.main.presentation.teacher.MainTeacherUi
@@ -39,7 +40,8 @@ fun RootUi(
             is RootComponent.Child.StudentMain -> MainStudentUi(instance.instance)
             is RootComponent.Child.TeacherMain -> MainTeacherUi(instance.instance)
             is RootComponent.Child.Group -> GroupUi(instance.instance)
-            is RootComponent.Child.JoinRequests -> JoinRequestsUi(instance.instance)
+            is RootComponent.Child.JoinRequestsTeacher -> JoinRequestsTeacherUi(instance.instance)
+            is RootComponent.Child.JoinRequestsStudent -> JoinRequestsStudentUi(instance.instance)
             is RootComponent.Child.Lessons -> LessonsUi(instance.instance)
             is RootComponent.Child.Start -> StartUi(instance.instance)
         }

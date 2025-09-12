@@ -21,8 +21,8 @@ class RealGroupCreateComponent(
     override val subjectInputControl = InputControl(componentScope)
     override val isCreationProgress = MutableStateFlow(false)
     override val isCreationButtonEnabled =
-        computed(nameInputControl.text, subjectInputControl.text) { text, subject ->
-            text.isNotBlank() && subject.isNotBlank()
+        computed(nameInputControl.text, subjectInputControl.text, descriptionInputControl.text) { text, subject, description ->
+            text.isNotBlank() && subject.isNotBlank() && description.isNotBlank()
         }
 
     override fun onCreateClick() {

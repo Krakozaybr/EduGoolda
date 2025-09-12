@@ -24,7 +24,8 @@ class FakeTeacherGroupDetailsComponent() : TeacherGroupDetailsComponent {
     override fun onRetryClick() = Unit
     override fun onLoadNext() = Unit
     override fun onReturnBackRequestClick() = Unit
-    override fun onGroupCodeGenerateRequestClick() = Unit
+    override fun onGroupCodeGenerateRequestClick(onCodeGenerated: (String) -> Unit) = Unit
     override fun onDialogDeleteGroup() = Unit
     override fun onDialogKickMember(action: KickType, userId: UserId) = Unit
+    override fun onShowMessageCodeCopied(code: String) = Unit
 }

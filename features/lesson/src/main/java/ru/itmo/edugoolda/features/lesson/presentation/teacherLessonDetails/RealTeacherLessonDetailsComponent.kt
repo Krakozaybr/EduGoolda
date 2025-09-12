@@ -16,6 +16,7 @@ import ru.itmo.edugoolda.core.utils.observe
 import ru.itmo.edugoolda.core.utils.withProgress
 import ru.itmo.edugoolda.data.lesson.lesson_details.api.LessonDetailsRepository
 import ru.itmo.edugoolda.data.lesson.lesson_details.api.LessonId
+import ru.itmo.edugoolda.data.lesson.lesson_info.api.LessonInfoRepository
 import ru.itmo.edugoolda.features.lesson.R
 
 class RealTeacherLessonDetailsComponent(
@@ -24,6 +25,7 @@ class RealTeacherLessonDetailsComponent(
     private val communication: TeacherLessonDetailsComponent.Communication,
     private val errorHandler: ErrorHandler,
     private val lessonDetailsRepository: LessonDetailsRepository,
+    private val lessonInfoRepository: LessonInfoRepository
 ) : TeacherLessonDetailsComponent, ComponentContext by componentContext {
     private val lessonTeacherDetailsReplica = lessonDetailsRepository.lessonTeacherDetailsReplica.withKey(lessonId)
     override val lessonTeacherDetailsState = lessonTeacherDetailsReplica.observe(this, errorHandler)
@@ -47,7 +49,7 @@ class RealTeacherLessonDetailsComponent(
 
         componentScope.safeLaunch(errorHandler) {
             withProgress(isDeletingLessonProgress) {
-                lessonDetailsRepository.deleteLessonTeacher(lessonId)
+                lessonInfoRepository.deleteLesson(lessonId)
             }
             communication.onTeacherLessonDeleted()
         }

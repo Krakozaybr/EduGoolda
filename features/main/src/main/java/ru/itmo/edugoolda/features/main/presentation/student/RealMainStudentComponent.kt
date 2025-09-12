@@ -19,11 +19,12 @@ import ru.itmo.edugoolda.features.lesson.createLessonInfoListStudentComponent
 import ru.itmo.edugoolda.features.lesson.presentation.studentLessonList.LessonInfoListStudentComponent
 import ru.itmo.edugoolda.features.main.presentation.student.MainStudentComponent.Tab
 import ru.itmo.edugoolda.features.profile.createProfileComponent
+import ru.itmo.edugoolda.features.profile.presentation.viewProfile.ProfileComponent
 
 class RealMainStudentComponent(
     componentContext: ComponentContext,
     private val communication: MainStudentComponent.Communication,
-    private val componentFactory: ComponentFactory
+    private val componentFactory: ComponentFactory,
 ) : ComponentContext by componentContext, MainStudentComponent {
 
     private val navigation = StackNavigation<Config>()
@@ -53,14 +54,14 @@ class RealMainStudentComponent(
     private inner class ChildCommunication : MainStudentComponent.Communication by communication,
         StudentGroupsComponent.Communication,
         HomeStudentComponent.Communication,
-        LessonInfoListStudentComponent.Communication {
+        LessonInfoListStudentComponent.Communication,
+        ProfileComponent.Communication {
         override fun onAllSolutionsRequested() = onTabClick(Tab.Lessons)
-
     }
 
     private fun createChild(
         config: Config,
-        componentContext: ComponentContext
+        componentContext: ComponentContext,
     ) = when (config) {
         Config.Groups -> MainStudentComponent.Child.Groups(
             componentFactory.createStudentGroupsComponent(
@@ -87,6 +88,7 @@ class RealMainStudentComponent(
             componentFactory.createProfileComponent(
                 componentContext,
                 null,
+                ChildCommunication()
             )
         )
     }

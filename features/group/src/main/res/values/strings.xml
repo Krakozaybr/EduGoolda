@@ -6,7 +6,7 @@
     <string name="delete_participant_message_secondary">Are you sure you want to delete participant from group «%s»? This action will result in the deletion of the student\'s assignment progress.</string>
     <string name="search_students_group">Search</string>
     <string name="group_info_title">Information about group</string>
-    <string name="group_invitation_code">Generate invitation code</string>
+    <string name="group_invitation_code">Invitation code</string>
     <string name="group_members_title">Members</string>
     <string name="group_add_title">Group adding</string>
     <string name="group_textfield_code">Invitation code</string>
@@ -25,4 +25,14 @@
     <string name="group_textfield_name">Name</string>
     <string name="group_textfield_description">Description</string>
     <string name="group_textfield_subject">Subject name</string>
+    <string name="group_list_empty_student">Unfortunately, you are not\na member of any group…</string>
+    <string name="group_list_empty_teacher">You don\'t have any groups,\ncreate a new one.</string>
+    <string name="group_message_code_copied">Code «%s» added to clipboard</string>
+    <string name="group_students_list_empty_teacher">There are no members in the group…</string>
+    <string name="dialog_add_group_title">Enter invitation code</string>
+    <string name="dialog_add_group_confirm">Confirm</string>
+    <string name="dialog_add_group_dismiss">Cancel</string>
+    <string name="dialog_add_group_message">Invitation code</string>
+    <string name="message_service_invalid_code">Invalid invitation code entered</string>
+    <string name="message_service_valid_code_sent">Application to the group has been successfully sent</string>
 </resources>

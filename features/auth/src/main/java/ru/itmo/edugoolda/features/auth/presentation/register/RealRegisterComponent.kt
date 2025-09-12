@@ -1,11 +1,10 @@
 package ru.itmo.edugoolda.features.auth.presentation.register
 
 import com.arkivanov.decompose.ComponentContext
-import dev.icerock.moko.resources.desc.StringDesc
+import dev.icerock.moko.resources.desc.strResDesc
 import kotlinx.coroutines.flow.MutableStateFlow
 import ru.itmo.edugoolda.core.error_handling.ErrorHandler
 import ru.itmo.edugoolda.core.error_handling.safeLaunch
-import ru.itmo.edugoolda.core.utils.Resource
 import ru.itmo.edugoolda.core.utils.componentScope
 import ru.itmo.edugoolda.core.utils.withProgress
 import ru.itmo.edugoolda.data.auth.api.AuthRepository
@@ -30,7 +29,7 @@ class RealRegisterComponent(
     override fun onRegisterClick() {
         if (isRegisterProgress.value) return
 
-        if (isValidEmail(emailInputControl.text.value)) {
+        if (isValidEmail(emailInputControl.text.value) && isValidPassword(passwordInputControl.text.value)) {
             emailInputControl.error.value = null
             componentScope.safeLaunch(errorHandler) {
                 withProgress(isRegisterProgress) {
@@ -43,8 +42,10 @@ class RealRegisterComponent(
                     communication.onRegistered()
                 }
             }
-        } else {
-            emailInputControl.error.value = StringDesc.Resource(R.string.register_incorrect_email_error)
+        } else if (!isValidEmail(emailInputControl.text.value)) {
+            emailInputControl.error.value = R.string.register_incorrect_email_error.strResDesc()
+        } else if (!isValidPassword(passwordInputControl.text.value)) {
+            passwordInputControl.error.value = R.string.register_incorrect_password_error.strResDesc()
         }
     }
 
@@ -61,5 +62,10 @@ class RealRegisterComponent(
             "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"
         )
         return email.matches(emailRegex)
+    }
+
+    private fun isValidPassword(password: String): Boolean {
+        val regex = Regex("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{6,32}$")
+        return regex.matches(password)
     }
 }

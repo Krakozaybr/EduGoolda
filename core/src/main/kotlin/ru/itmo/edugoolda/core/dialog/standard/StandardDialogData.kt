@@ -8,7 +8,7 @@ data class StandardDialogData(
     val message: StringDesc? = null,
     val confirmButton: DialogButton,
     val dismissButton: DialogButton? = null,
-    val dismissableByUser: Boolean = true
+    val dismissableByUser: Boolean = true,
 ) {
 
     companion object {
@@ -29,5 +29,5 @@ data class StandardDialogData(
 
 data class DialogButton(
     val text: StringDesc,
-    val action: () -> Unit
+    val action: () -> Unit,
 )

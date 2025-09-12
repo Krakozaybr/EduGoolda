@@ -24,9 +24,10 @@ interface TeacherGroupDetailsComponent {
     fun onRetryClick()
     fun onLoadNext()
     fun onReturnBackRequestClick()
-    fun onGroupCodeGenerateRequestClick()
+    fun onGroupCodeGenerateRequestClick(onCodeGenerated: (String) -> Unit)
     fun onDialogDeleteGroup()
     fun onDialogKickMember(action: KickType, userId: UserId)
+    fun onShowMessageCodeCopied(code: String)
 
     interface Communication {
         fun onReturnBackRequested()

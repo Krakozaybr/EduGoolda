@@ -12,6 +12,7 @@ data class CustomColors(
     val button: ButtonColors,
     val border: BorderColors,
     val textField: TextFieldColors,
+    val message: MessageColors
 )
 
 data class BackgroundColors(
@@ -60,6 +61,11 @@ data class BorderColors(
     val primary: Color,
     val error: Color,
     val outlinedTextField: Color
+)
+
+data class MessageColors(
+    val primary: Color,
+    val secondary: Color,
 )
 
 val LocalCustomColors = staticCompositionLocalOf<CustomColors?> { null }

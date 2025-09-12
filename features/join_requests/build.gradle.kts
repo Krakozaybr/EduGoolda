@@ -17,6 +17,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":data:join_requests"))
     implementation(project(":data:user"))
+    implementation(project(":data:group"))
 
     // Kotlin
     implementation(libs.kotlinx.datetime)

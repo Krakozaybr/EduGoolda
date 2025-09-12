@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 import ru.itmo.edugoolda.data.lesson.lesson_details.api.LessonId
 import ru.itmo.edugoolda.data.solutions.api.SolutionId
 import ru.itmo.edugoolda.features.lesson.presentation.createLesson.CreateLessonComponent
+import ru.itmo.edugoolda.features.lesson.presentation.createLesson.groupsListForLessonCreating.AddingGroupComponent
 import ru.itmo.edugoolda.features.lesson.presentation.studentLessonDetails.StudentLessonDetailsComponent
 import ru.itmo.edugoolda.features.lesson.presentation.studentLessonList.LessonInfoListStudentComponent
 import ru.itmo.edugoolda.features.lesson.presentation.teacherLessonDetails.TeacherLessonDetailsComponent
@@ -39,6 +40,9 @@ interface LessonsComponent {
 
         @Serializable
         data class TeacherSolutionDetails(val solutionId: SolutionId) : InitialConfiguration
+
+        @Serializable
+        data object TeacherAddGroupForLesson : InitialConfiguration
     }
 
     sealed interface Child {
@@ -49,10 +53,12 @@ interface LessonsComponent {
         data class StudentLessonInfoList(val component: LessonInfoListStudentComponent) : Child
         data class TeacherSolutionsInfoList(val component: SolutionListComponent) : Child
         data class TeacherLessonCreate(val component: CreateLessonComponent) : Child
+        data class TeacherAddGroupForLesson(val component: AddingGroupComponent) : Child
     }
 
     interface Communication {
         fun onCancel()
         fun onSolutionDetails(solutionId: SolutionId)
+        fun onReturnBackFromSolutionListRequested()
     }
 }

@@ -1,12 +1,15 @@
 package ru.itmo.edugoolda.data.join_requests.internal.dto
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-
+import ru.itmo.edugoolda.data.group.group_list.internal.dto.GroupInfoDTO
+import ru.itmo.edugoolda.data.group.group_list.internal.dto.toDomain
 import ru.itmo.edugoolda.data.join_requests.api.JoinRequest
 import ru.itmo.edugoolda.data.join_requests.api.JoinRequestId
-
 import ru.itmo.edugoolda.data.join_requests.internal.domain.JoinRequestListWithTotal
+import ru.itmo.edugoolda.data.lesson.lesson_details.internal.dto.defaultFormat
+import ru.itmo.edugoolda.data.lesson.lesson_details.internal.dto.toCurrentLocalDateTime
 import ru.itmo.edugoolda.data.user.internal.dto.UserInfoDTO
 import ru.itmo.edugoolda.data.user.internal.dto.toDomain
 
@@ -24,14 +27,14 @@ fun JoinRequestListResponse.toDomain(): JoinRequestListWithTotal = JoinRequestLi
 @Serializable
 data class JoinRequestDTO(
     @SerialName("id") val id: String,
-    @SerialName("group_name") val groupName: String,
     @SerialName("sender") val sender: UserInfoDTO,
-    @SerialName("date") val date: String
+    @SerialName("group") val groupInfo: GroupInfoDTO,
+    @SerialName("created_at") val createdAt: Instant
 )
 
 fun JoinRequestDTO.toDomain(): JoinRequest = JoinRequest(
     id = JoinRequestId(id),
-    groupName = groupName,
     sender = sender.toDomain(),
-    date = date
+    groupInfo = groupInfo.toDomain(),
+    createAt = createdAt.toCurrentLocalDateTime().defaultFormat()
 )

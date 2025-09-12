@@ -18,4 +18,8 @@
     <string name="profile_role_header">Role</string>
     <string name="profile_role_teacher">Teacher</string>
     <string name="profile_role_student">Student</string>
+    <string name="dialog_message_logout">Are you sure you want to log out?</string>
+    <string name="dialog_title_logout">Confirm Logout</string>
+    <string name="dialog_confirm">Yes</string>
+    <string name="dialog_dismiss">Cancel</string>
 </resources>

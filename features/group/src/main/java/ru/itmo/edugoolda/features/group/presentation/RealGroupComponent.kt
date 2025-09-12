@@ -4,6 +4,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
+import com.arkivanov.decompose.router.stack.replaceCurrent
 import kotlinx.serialization.Serializable
 import ru.itmo.edugoolda.core.ComponentFactory
 import ru.itmo.edugoolda.core.utils.safePush
@@ -61,7 +62,7 @@ class RealGroupComponent(
         }
 
         override fun onGroupCreated(id: GroupId) {
-            navigation.safePush(Config.TeacherGroupDetails(id))
+            navigation.replaceCurrent(Config.TeacherGroupDetails(id))
         }
 
         override fun onCancelGroupCreation() = goBack()
@@ -81,13 +82,10 @@ class RealGroupComponent(
             navigation.safePush(Config.AddGroup)
         }
 
-        override fun onGroupAdded(groupId: GroupId) {
-            navigation.safePush(Config.StudentGroupDetails(groupId))
-        }
-
+        override fun onGroupAdded() = goBack()
         override fun onReturnBackRequested() = goBack()
         override fun onGroupQuited() = goBack()
-        override fun onCancelGroupAdding() = navigation.pop()
+        override fun onCancelGroupAdding() = goBack()
     }
 
     private fun goBack() = when {

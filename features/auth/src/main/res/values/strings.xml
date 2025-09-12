@@ -14,5 +14,6 @@
     <string name="register_enum_string_student">Student</string>
     <string name="register_incorrect_email_error">Incorrect email format entered</string>
     <string name="login_password_hint">Password</string>
-
+    <string name="message_login_error">Invalid username or password. Please try again</string>
+    <string name="register_incorrect_password_error">Password length must be at least 6 characters and no more than 32. Password must contain at least one uppercase and lowercase letter, and also a number.</string>
 </resources>

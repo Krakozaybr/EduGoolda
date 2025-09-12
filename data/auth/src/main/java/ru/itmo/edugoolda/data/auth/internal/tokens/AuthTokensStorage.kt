@@ -23,7 +23,10 @@ internal interface AuthTokensStorage {
 
         private val storage = settingsFactory.createEncryptedSettings(STORAGE_NAME)
 
-        override suspend fun clear() = storage.clear()
+        override suspend fun clear() {
+            storage.clear()
+            tokens.value = null
+        }
 
         override suspend fun save(tokens: AuthTokens) {
             this.tokens.value = tokens

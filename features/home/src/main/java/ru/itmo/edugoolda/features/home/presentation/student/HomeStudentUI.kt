@@ -7,10 +7,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -24,7 +28,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import ru.itmo.edugoolda.core.R
-import ru.itmo.edugoolda.features.home.R as homeR
 import ru.itmo.edugoolda.core.theme.custom.CustomTheme
 import ru.itmo.edugoolda.core.widget.PullRefreshLceWidget
 import ru.itmo.edugoolda.core.widget.button.AppButton
@@ -32,24 +35,28 @@ import ru.itmo.edugoolda.core.widget.button.ButtonType
 import ru.itmo.edugoolda.core.widget.join_requests.JoinRequestStudentListItem
 import ru.itmo.edugoolda.core.widget.lesson.LessonInfoStudentListItem
 import ru.itmo.edugoolda.data.home.api.HomeStudentViewData
+import ru.itmo.edugoolda.features.home.R as homeR
 
 @Composable
 fun HomeStudentUi(
     component: HomeStudentComponent,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val mainState by component.mainState.collectAsState()
+
     PullRefreshLceWidget(
         state = mainState,
         onRefresh = component::onRefresh,
         onRetryClick = component::onRetryClick,
-        modifier = modifier
+        modifier = modifier.statusBarsPadding(),
+        isShowCircularProgressIndicator = false
     ) { data: HomeStudentViewData, _: Boolean ->
 
         Column(
             modifier = Modifier
+                .verticalScroll(rememberScrollState())
                 .fillMaxWidth()
-                .padding(start = 24.dp, end = 24.dp, top = 30.dp),
+                .padding(start = 24.dp, end = 24.dp, top = 25.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             // Header
@@ -81,18 +88,20 @@ fun HomeStudentUi(
                 )
                 Text(
                     text = stringResource(id = homeR.string.lessons),
-                    style = CustomTheme.typography.caption.regular,
+                    style = CustomTheme.typography.body.regular15,
                     fontWeight = FontWeight.Bold,
                 )
             }
 
             // Solutions List
-            LazyColumn {
-                items(data.lessonInfoList.take(3)) {
+            LazyColumn(
+                modifier = Modifier.heightIn(max = 300.dp)
+            ) {
+                items(data.lessonInfoList.take(2)) {
                     LessonInfoStudentListItem(
                         name = it.name,
                         createdAt = it.createdAt,
-                        onClick = { component.onLessonClick(it.id) }
+                        onLessonItemClick = { component.onLessonClick(it.id) }
                     )
                 }
             }
@@ -135,17 +144,20 @@ fun HomeStudentUi(
                 )
                 Text(
                     text = stringResource(id = homeR.string.join_requests),
-                    style = CustomTheme.typography.caption.regular,
+                    style = CustomTheme.typography.body.regular15,
                     fontWeight = FontWeight.Bold
                 )
             }
 
             // Request list
-            LazyColumn {
-                items(data.joinRequests.take(3)) {
+            LazyColumn(
+                modifier = Modifier.heightIn(max = 300.dp)
+            ) {
+                items(data.joinRequests.take(2)) {
                     JoinRequestStudentListItem(
-                        groupName = it.groupName,
-                        date = it.date
+                        groupName = it.groupInfo.name,
+                        date = it.createAt,
+                        { component.onCancelJoinRequestClick(it.id) }
                     )
                 }
             }
@@ -153,8 +165,7 @@ fun HomeStudentUi(
             // All requests button
             AppButton(
                 modifier = Modifier
-                    .fillMaxWidth(),
-
+                    .fillMaxWidth().padding(bottom = 10.dp),
                 buttonType = ButtonType.Secondary,
                 onClick = { component.onAllJoinRequestsClick() },
                 contentPadding = PaddingValues(12.dp)

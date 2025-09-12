@@ -11,5 +11,5 @@ interface LessonCreateRepository {
         isEstimatable: Boolean,
         deadline: Long?,
         opensAt: Long?
-    ) : LessonFullDetails
+    ): LessonFullDetails
 }

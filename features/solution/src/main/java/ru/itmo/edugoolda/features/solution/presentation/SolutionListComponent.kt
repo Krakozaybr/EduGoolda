@@ -12,7 +12,10 @@ interface SolutionListComponent {
     fun onRefresh()
     fun onRetryClick()
     fun onLoadNext()
+    fun onReturnBackClickRequest()
+
     interface Communication {
         fun onSolutionDetailsRequested(solutionId: SolutionId)
+        fun onReturnBackFromSolutionListRequested()
     }
 }

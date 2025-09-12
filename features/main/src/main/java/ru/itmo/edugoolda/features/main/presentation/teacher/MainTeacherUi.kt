@@ -4,6 +4,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -26,6 +28,7 @@ import ru.itmo.edugoolda.core.theme.custom.CustomTheme
 import ru.itmo.edugoolda.core.widget.bottom_bar.CustomBottomBar
 import ru.itmo.edugoolda.features.group.presentation.teacherGroups.TeacherGroupsUi
 import ru.itmo.edugoolda.features.home.presentation.teacher.HomeTeacherUi
+import ru.itmo.edugoolda.features.lesson.presentation.teacherLessonList.LessonInfoListTeacherUi
 import ru.itmo.edugoolda.features.main.R
 import ru.itmo.edugoolda.features.profile.presentation.viewProfile.ProfileUI
 import ru.itmo.edugoolda.core.R as CoreR
@@ -40,12 +43,14 @@ fun MainTeacherUi(
 
     Scaffold(
         modifier = modifier,
+        contentWindowInsets = WindowInsets.navigationBars,
         content = {
             Children(stack, Modifier.padding(it)) {
                 when (val instance = it.instance) {
                     is MainTeacherComponent.Child.Groups -> TeacherGroupsUi(instance.component)
                     is MainTeacherComponent.Child.Home -> HomeTeacherUi(instance.component)
                     is MainTeacherComponent.Child.Profile -> ProfileUI(instance.component)
+                    is MainTeacherComponent.Child.Lessons -> LessonInfoListTeacherUi(instance.component)
                 }
             }
         },

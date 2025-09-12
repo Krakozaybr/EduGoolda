@@ -26,7 +26,7 @@ import java.time.format.DateTimeFormatter
 internal data class LessonStudentDetailsDTO(
     @SerialName("id") val id: String,
     @SerialName("name") val name: String,
-    @SerialName("description") val description: String?,
+    @SerialName("description") val description: String,
     @SerialName("teacher") val teacher: UserInfoDTO,
     @SerialName("deadline") val deadline: Instant?,
     @SerialName("groups") val groups: List<GroupInfoDTO>,
@@ -52,8 +52,12 @@ internal fun LessonStudentDetailsDTO.toDomain(): LessonStudentDetails = LessonSt
 
 fun Instant.toCurrentLocalDateTime() = toLocalDateTime(TimeZone.currentSystemDefault())
 
-fun LocalDateTime.defaultFormat() = toJavaLocalDateTime().format(
+fun LocalDateTime.defaultFormat(): String = toJavaLocalDateTime().format(
     DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy")
+)
+
+fun LocalDateTime.onlyTimeFormat(): String = toJavaLocalDateTime().format(
+    DateTimeFormatter.ofPattern("HH:mm")
 )
 
 @Serializable
@@ -76,6 +80,7 @@ internal data class SendMessageRequest(
     @SerialName("message") val message: String
 )
 
+@Serializable
 internal data class SolutionDetailsDTO(
     @SerialName("id") val id: String,
     @SerialName("lesson") val lesson: LessonGeneralDetailsDTO,
@@ -83,6 +88,7 @@ internal data class SolutionDetailsDTO(
     @SerialName("status") val status: String,
 )
 
+@Serializable
 internal data class LessonGeneralDetailsDTO(
     @SerialName("id") val id: String,
     @SerialName("name") val name: String,
@@ -122,7 +128,7 @@ internal data class SetSolutionStatusRequest(
 internal data class LessonFullDetailsDTO(
     @SerialName("id") val id: String,
     @SerialName("name") val name: String,
-    @SerialName("description") val description: String?,
+    @SerialName("description") val description: String,
     @SerialName("teacher") val teacher: UserInfoDTO,
     @SerialName("deadline") val deadline: Instant?,
     @SerialName("opens_at") val opensAt: Instant?,

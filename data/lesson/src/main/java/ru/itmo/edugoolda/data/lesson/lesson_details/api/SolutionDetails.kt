@@ -79,7 +79,7 @@ data class SolutionDetails(
                     ),
                 )
             ),
-            status = LessonStatus.Reviewed
+            status = LessonStatus.Pending
         )
     }
 }

@@ -11,8 +11,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":data:solutions"))
-    implementation(project(":features:solution"))
     ksp(libs.ktorfit.ksp)
 
     // Modules
@@ -20,6 +18,8 @@ dependencies {
     implementation(project(":data:group"))
     implementation(project(":data:user"))
     implementation(project(":data:lesson"))
+    implementation(project(":data:solutions"))
+    implementation(project(":features:solution"))
 
     // Kotlin
     implementation(libs.kotlinx.datetime)

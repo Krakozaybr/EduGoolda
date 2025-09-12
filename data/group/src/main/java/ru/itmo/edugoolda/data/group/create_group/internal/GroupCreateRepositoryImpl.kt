@@ -7,8 +7,10 @@ import ru.itmo.edugoolda.data.group.group_info.api.GroupFullInfo
 import ru.itmo.edugoolda.data.group.group_info.api.GroupSubject
 import ru.itmo.edugoolda.data.group.group_info.api.SubjectId
 import ru.itmo.edugoolda.data.group.group_info.internal.dto.toDomain
+import ru.itmo.edugoolda.data.group.group_list.internal.GroupsListRepositoryImpl
 
 internal class GroupCreateRepositoryImpl(
+    private val groupsListRepositoryImpl: GroupsListRepositoryImpl,
     private val createGroupApi: GroupCreateApi
 ) : GroupCreateRepository {
     override suspend fun createGroup(name: String, description: String, selectedSubject: SubjectId): GroupFullInfo {
@@ -17,7 +19,13 @@ internal class GroupCreateRepositoryImpl(
             description = description,
             subjectId = selectedSubject.value
         )
-        return createGroupApi.createGroup(actionRequest).toDomain()
+
+        val dataGroupCreation = createGroupApi.createGroup(actionRequest).toDomain()
+
+        groupsListRepositoryImpl._groupInfoListReplica.onEachPagedReplica {
+            refresh()
+        }
+        return dataGroupCreation
     }
 
     override suspend fun createSubject(name: String): GroupSubject {

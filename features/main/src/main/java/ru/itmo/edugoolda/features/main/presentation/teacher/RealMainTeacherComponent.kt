@@ -16,8 +16,11 @@ import ru.itmo.edugoolda.features.group.createTeacherGroupsComponent
 import ru.itmo.edugoolda.features.group.presentation.teacherGroups.TeacherGroupsComponent
 import ru.itmo.edugoolda.features.home.createHomeTeacherComponent
 import ru.itmo.edugoolda.features.home.presentation.teacher.HomeTeacherComponent
+import ru.itmo.edugoolda.features.lesson.createTeacherLessonListInfoComponent
+import ru.itmo.edugoolda.features.lesson.presentation.teacherLessonList.LessonInfoListTeacherComponent
 import ru.itmo.edugoolda.features.main.presentation.teacher.MainTeacherComponent.Tab
 import ru.itmo.edugoolda.features.profile.createProfileComponent
+import ru.itmo.edugoolda.features.profile.presentation.viewProfile.ProfileComponent
 
 class RealMainTeacherComponent(
     componentContext: ComponentContext,
@@ -51,20 +54,29 @@ class RealMainTeacherComponent(
                 Tab.Home -> Config.Home
                 Tab.Groups -> Config.Groups
                 Tab.Profile -> Config.Profile
+                Tab.Lessons -> Config.Lessons
             }
         )
 
         selectedTab.value = tab
     }
 
-    override fun onCreateLessonClick() = communication.createLessonRequested()
+    override fun onCreateLessonClick() {
+        simpleDialogControl.dismiss()
+        communication.createLessonRequested()
+    }
 
-    override fun onCreateGroupClick() = communication.createGroupRequested()
+    override fun onCreateGroupClick() {
+        simpleDialogControl.dismiss()
+        communication.createGroupRequested()
+    }
 
     private inner class ChildCommunication :
         TeacherGroupsComponent.Communication,
         HomeTeacherComponent.Communication,
-        MainTeacherComponent.Communication by communication
+        MainTeacherComponent.Communication by communication,
+        LessonInfoListTeacherComponent.Communication,
+        ProfileComponent.Communication
 
     private fun createChild(
         config: Config,
@@ -87,7 +99,15 @@ class RealMainTeacherComponent(
         Config.Profile -> MainTeacherComponent.Child.Profile(
             componentFactory.createProfileComponent(
                 componentContext,
-                null
+                null,
+                ChildCommunication()
+            )
+        )
+
+        Config.Lessons -> MainTeacherComponent.Child.Lessons(
+            componentFactory.createTeacherLessonListInfoComponent(
+                componentContext,
+                ChildCommunication()
             )
         )
     }
@@ -102,5 +122,8 @@ class RealMainTeacherComponent(
 
         @Serializable
         data object Profile : Config
+
+        @Serializable
+        data object Lessons : Config
     }
 }

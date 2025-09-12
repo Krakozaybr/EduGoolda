@@ -15,7 +15,6 @@ interface CreateLessonComponent {
     val isCreateLessonButtonEnabled: StateFlow<Boolean>
     val groupListState: StateFlow<List<GroupInfo>>
 
-
     fun onCreateLesson()
     fun onReturnBackClick()
     fun onLessonTypeSelect(newType: LessonType)

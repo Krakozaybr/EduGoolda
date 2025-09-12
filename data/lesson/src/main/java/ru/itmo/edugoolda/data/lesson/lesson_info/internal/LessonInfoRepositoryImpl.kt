@@ -2,21 +2,22 @@ package ru.itmo.edugoolda.data.lesson.lesson_info.internal
 
 import me.aartikov.replica.algebra.paged.map
 import me.aartikov.replica.client.ReplicaClient
+import me.aartikov.replica.paged.PagedData
 import me.aartikov.replica.paged.PagedFetcher
 import me.aartikov.replica.paged.PagedReplicaSettings
 import ru.itmo.edugoolda.core.utils.PageWithTotalAmount
-import ru.itmo.edugoolda.data.lesson.lesson_info.api.LessonInfoList
-import me.aartikov.replica.paged.PagedData
 import ru.itmo.edugoolda.data.lesson.lesson_details.api.LessonId
+import ru.itmo.edugoolda.data.lesson.lesson_info.api.LessonInfo
+import ru.itmo.edugoolda.data.lesson.lesson_info.api.LessonInfoList
 import ru.itmo.edugoolda.data.lesson.lesson_info.api.LessonInfoRepository
 import ru.itmo.edugoolda.data.lesson.lesson_info.internal.dto.toDomain
-import ru.itmo.edugoolda.data.lesson.lesson_info.api.LessonInfo
+import ru.itmo.edugoolda.data.solutions.internal.SolutionRepositoryImpl
 import kotlin.time.Duration.Companion.minutes
 
 class LessonInfoRepositoryImpl(
     replicaClient: ReplicaClient,
-    private val api: LessonInfoApi
-
+    private val api: LessonInfoApi,
+    private val solutionRepositoryImpl: SolutionRepositoryImpl
 ) : LessonInfoRepository {
     companion object {
         private const val PAGE_SIZE = 20
@@ -24,10 +25,12 @@ class LessonInfoRepositoryImpl(
 
     override suspend fun deleteLesson(lessonId: LessonId) {
         api.deleteLesson(lessonId.value)
+        _lessonInfoListReplica.refresh()
+        solutionRepositoryImpl.solutionListReplica.refresh()
     }
 
-    override val lessonInfoListReplica = replicaClient.createPagedReplica(
-        name = "invitation list replica",
+     private val _lessonInfoListReplica = replicaClient.createPagedReplica(
+        name = "lessons list replica",
         settings = PagedReplicaSettings(staleTime = 5.minutes),
         idExtractor = { it.id },
         fetcher = object : PagedFetcher<LessonInfo, PageWithTotalAmount<LessonInfo>> {
@@ -58,7 +61,9 @@ class LessonInfoRepositoryImpl(
                 )
             }
         }
-    ).map {
+    )
+
+    override val lessonInfoListReplica = _lessonInfoListReplica.map {
         LessonInfoList(
             lessonInfoList = it.items,
             hasNextPage = it.hasNextPage

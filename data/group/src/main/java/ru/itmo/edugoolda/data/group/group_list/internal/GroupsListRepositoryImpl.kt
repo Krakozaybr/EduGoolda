@@ -23,7 +23,7 @@ internal class GroupsListRepositoryImpl(
         private const val PAGE_SIZE = 20
     }
 
-    private val _groupInfoListReplica = replicaClient.createKeyedPagedReplica(
+    val _groupInfoListReplica = replicaClient.createKeyedPagedReplica(
         name = "group list replica",
         childName = {
             "child $it"
@@ -78,6 +78,18 @@ internal class GroupsListRepositoryImpl(
 
     override suspend fun deleteGroup(groupId: GroupId) {
         groupListApi.deleteGroup(groupId.value)
+        _groupInfoListReplica.onEachPagedReplica {
+            mutateData { pages ->
+                pages.map { page: PageWithTotalAmount<GroupInfo> ->
+                    page.copy(
+                        hasNextPage = page.hasNextPage,
+                        hasPreviousPage = page.hasPreviousPage,
+                        items = page.items.filter { it.id != groupId },
+                        total = page.total
+                    )
+                }
+            }
+        }
     }
 
     override suspend fun changeFavouriteStatus(id: GroupId, isFavourite: Boolean) {

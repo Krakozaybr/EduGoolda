@@ -4,6 +4,7 @@ import de.jensklingenberg.ktorfit.http.Body
 import de.jensklingenberg.ktorfit.http.POST
 import ru.itmo.edugoolda.data.auth.internal.dto.AuthResponse
 import ru.itmo.edugoolda.data.auth.internal.dto.LoginRequest
+import ru.itmo.edugoolda.data.auth.internal.dto.LogoutRequest
 import ru.itmo.edugoolda.data.auth.internal.dto.RefreshRequest
 import ru.itmo.edugoolda.data.auth.internal.dto.RefreshResponse
 import ru.itmo.edugoolda.data.auth.internal.dto.RegisterRequest
@@ -17,4 +18,7 @@ internal interface AuthApi {
 
     @POST("api/v1/auth/refresh")
     suspend fun refresh(@Body request: RefreshRequest): RefreshResponse
+
+    @POST("api/v1/auth/logout")
+    suspend fun logout(@Body request: LogoutRequest)
 }

@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import ru.itmo.edugoolda.features.lesson.presentation.createLesson.CreateLessonUi
+import ru.itmo.edugoolda.features.lesson.presentation.createLesson.groupsListForLessonCreating.AddingGroupUi
 import ru.itmo.edugoolda.features.lesson.presentation.studentLessonDetails.StudentLessonDetailsUi
 import ru.itmo.edugoolda.features.lesson.presentation.studentLessonList.LessonInfoListStudentUi
 import ru.itmo.edugoolda.features.lesson.presentation.teacherLessonDetails.TeacherLessonDetailsUi
@@ -29,6 +30,7 @@ fun LessonsUi(
             is LessonsComponent.Child.TeacherLessonInfoList -> LessonInfoListTeacherUi(instance.component)
             is LessonsComponent.Child.TeacherLessonCreate -> CreateLessonUi(instance.component)
             is LessonsComponent.Child.TeacherSolutionsInfoList -> SolutionListUi(instance.component)
+            is LessonsComponent.Child.TeacherAddGroupForLesson -> AddingGroupUi(instance.component)
         }
     }
 }

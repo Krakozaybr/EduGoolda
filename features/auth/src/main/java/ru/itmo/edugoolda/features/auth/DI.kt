@@ -12,7 +12,7 @@ fun ComponentFactory.createLoginComponent(
     componentContext: ComponentContext,
     communication: LoginComponent.Communication,
 ): RealLoginComponent {
-    return RealLoginComponent(componentContext, communication, get(), get())
+    return RealLoginComponent(componentContext, communication, get(), get(), get())
 }
 
 fun ComponentFactory.createRegisterComponent(

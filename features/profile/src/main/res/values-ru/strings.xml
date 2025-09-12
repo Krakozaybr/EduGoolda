@@ -16,4 +16,8 @@
     <string name="profile_role_header">Роль</string>
     <string name="profile_role_teacher">Преподаватель</string>
     <string name="profile_role_student">Ученик</string>
+    <string name="dialog_message_logout">Вы уверены, что хотите выйти из аккаунта?</string>
+    <string name="dialog_title_logout">Подтверждение выхода</string>
+    <string name="dialog_confirm">Да</string>
+    <string name="dialog_dismiss">Отменить</string>
 </resources>

@@ -90,6 +90,7 @@ fun AppTextField(
     placeholder: String? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
+    onTextChanging: () -> Unit = {}
 ) {
     val focusRequester = remember { FocusRequester() }
 
@@ -149,6 +150,7 @@ fun AppTextField(
                 onTextChange(it.text)
                 currentSelection = it.selection
                 currentComposition = it.composition
+                onTextChanging()
             },
             enabled = isEnabled,
             readOnly = !isEnabled,
@@ -228,6 +230,7 @@ fun AppTextField(
     suffix: String? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
+    onTextChanging: () -> Unit = {}
 ) {
     val hasFocus by inputControl.hasFocus.collectAsState()
     val error by inputControl.error.collectAsState()
@@ -268,6 +271,7 @@ fun AppTextField(
             hasFocus = hasFocus
         ),
         interactionSource = interactionSource,
+        onTextChanging = onTextChanging
     )
 }
 

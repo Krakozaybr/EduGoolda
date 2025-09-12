@@ -44,8 +44,8 @@ interface MainStudentComponent {
 
         fun onAllJoinRequestsRequested()
 
-        fun onEditLessonRequested()
-
         fun onLessonDetailsRequested(lessonId: LessonId)
+
+        fun onLogoutRequested()
     }
 }

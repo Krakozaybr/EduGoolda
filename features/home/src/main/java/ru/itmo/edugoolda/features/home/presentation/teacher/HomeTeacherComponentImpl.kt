@@ -8,8 +8,8 @@ import ru.itmo.edugoolda.core.error_handling.safeLaunch
 import ru.itmo.edugoolda.core.utils.componentScope
 import ru.itmo.edugoolda.core.utils.observe
 import ru.itmo.edugoolda.data.home.api.HomeTeacherViewData
-import ru.itmo.edugoolda.data.join_requests.api.JoinRequest
 import ru.itmo.edugoolda.data.join_requests.api.JoinRequestAction
+import ru.itmo.edugoolda.data.join_requests.api.JoinRequestId
 import ru.itmo.edugoolda.data.join_requests.api.JoinRequestRepository
 import ru.itmo.edugoolda.data.solutions.api.SolutionId
 import ru.itmo.edugoolda.data.solutions.api.SolutionRepository
@@ -20,26 +20,29 @@ class HomeTeacherComponentImpl(
     private val errorHandler: ErrorHandler,
     private val joinRequestRepository: JoinRequestRepository,
     solutionRepository: SolutionRepository,
-
-    ) : HomeTeacherComponent, ComponentContext by componentContext {
-
+) : HomeTeacherComponent, ComponentContext by componentContext {
     private val joinRequestsReplica = joinRequestRepository.joinRequestListReplica.toReplica()
     private val solutionsReplica = solutionRepository.solutionListReplica.toReplica()
     private val mainStateReplica = combine(
         joinRequestsReplica,
         solutionsReplica
-    ) { joinRequests, solutions -> HomeTeacherViewData(joinRequests.joinRequestList, solutions.solutionInfoList) }
+    ) { joinRequests, solutions ->
+        HomeTeacherViewData(
+            joinRequests.joinRequestList,
+            solutions.solutionInfoList
+        )
+    }
     override val mainState = mainStateReplica.observe(this, errorHandler)
 
-    override fun onAcceptClick(joinRequest: JoinRequest) {
+    override fun onAcceptJoinRequestClick(joinRequestId: JoinRequestId) {
         componentScope.safeLaunch(errorHandler) {
-            joinRequestRepository.respondToJoinRequest(joinRequest.id, JoinRequestAction.Accept)
+            joinRequestRepository.respondToJoinRequest(joinRequestId, JoinRequestAction.Accept)
         }
     }
 
-    override fun onDeclineClick(joinRequest: JoinRequest) {
+    override fun onDeclineJoinRequestClick(joinRequestId: JoinRequestId) {
         componentScope.safeLaunch(errorHandler) {
-            joinRequestRepository.respondToJoinRequest(joinRequest.id, JoinRequestAction.Decline)
+            joinRequestRepository.respondToJoinRequest(joinRequestId, JoinRequestAction.Decline)
         }
     }
 

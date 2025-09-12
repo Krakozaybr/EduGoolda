@@ -40,6 +40,7 @@ class RealStudentLessonDetailsComponent(
         componentScope.safeLaunch(errorHandler) {
             withProgress(isSendingMessageProgress) {
                 lessonDetailsRepository.sendMessageByStudent(lessonId, replyInputControl.text.value)
+                replyInputControl.setText("")
             }
         }
     }

@@ -11,7 +11,7 @@ import ru.itmo.edugoolda.data.user.internal.dto.toDomain
 
 @Serializable
 data class LessonInfoListResponse(
-    @SerialName("request") val lessonInfoList: List<LessonInfoDTO>,
+    @SerialName("lessons") val lessonInfoList: List<LessonInfoDTO>,
     @SerialName("total") val total: Int,
 )
 
@@ -26,7 +26,7 @@ data class LessonInfoDTO(
     @SerialName("name") val name: String,
     @SerialName("description") val description: String?,
     @SerialName("teacher") val teacher: UserInfoDTO,
-    @SerialName("date") val date: String
+    @SerialName("created_at") val createdAt: String
 )
 
 fun LessonInfoDTO.toDomain(): LessonInfo = LessonInfo(
@@ -34,5 +34,5 @@ fun LessonInfoDTO.toDomain(): LessonInfo = LessonInfo(
     name = name,
     description = description,
     teacher = teacher.toDomain(),
-    createdAt = date
+    createdAt = createdAt
 )

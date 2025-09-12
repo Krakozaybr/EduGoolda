@@ -8,6 +8,7 @@ import me.aartikov.replica.paged.PagedData
 import me.aartikov.replica.paged.PagedReplicaSettings
 import ru.itmo.edugoolda.core.utils.PageWithTotalAmount
 import ru.itmo.edugoolda.data.group.group_list.api.GroupId
+import ru.itmo.edugoolda.data.group.group_list.internal.GroupsListRepositoryImpl
 import ru.itmo.edugoolda.data.group.group_students_list.api.GroupStudentsList
 import ru.itmo.edugoolda.data.group.group_students_list.api.GroupStudentsRepository
 import ru.itmo.edugoolda.data.group.group_students_list.api.KickType
@@ -20,6 +21,7 @@ import kotlin.time.Duration.Companion.minutes
 internal class GroupStudentsRepositoryImpl(
     replicaClient: ReplicaClient,
     private val groupStudentsApi: GroupStudentsApi,
+    private val groupsListRepositoryImpl: GroupsListRepositoryImpl
 ) : GroupStudentsRepository {
     companion object {
         private const val PAGE_SIZE = 20
@@ -107,5 +109,8 @@ internal class GroupStudentsRepositoryImpl(
 
     override suspend fun leaveFromGroup(groupId: GroupId) {
         groupStudentsApi.leaveFromGroup(groupId.value)
+        groupsListRepositoryImpl._groupInfoListReplica.onEachPagedReplica {
+            refresh()
+        }
     }
 }

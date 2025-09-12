@@ -11,7 +11,7 @@ import ru.itmo.edugoolda.data.user.api.UserRole
 data class LessonFullDetails(
     val id: LessonId,
     val name: String,
-    val description: String?,
+    val description: String,
     val teacher: UserInfo,
     val deadline: Instant?,
     val opensAt: Instant?,

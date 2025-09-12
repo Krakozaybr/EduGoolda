@@ -43,7 +43,7 @@ fun ComponentFactory.createStudentGroupsComponent(
     componentContext: ComponentContext,
     communication: StudentGroupsComponent.Communication,
 ): RealStudentGroupsComponent {
-    return RealStudentGroupsComponent(componentContext, communication, get(), get())
+    return RealStudentGroupsComponent(componentContext, communication, get(), get(), get(), get())
 }
 
 fun ComponentFactory.createTeacherGroupsComponent(
@@ -58,7 +58,7 @@ fun ComponentFactory.createTeacherGroupDetailsComponent(
     componentContext: ComponentContext,
     communication: TeacherGroupDetailsComponent.Communication,
     ): RealTeacherGroupDetailsComponent {
-    return RealTeacherGroupDetailsComponent(groupId, componentContext, communication, get(), get(), get(), get(), get())
+    return RealTeacherGroupDetailsComponent(groupId, componentContext, communication, get(), get(), get(), get(), get(), get())
 }
 
 fun ComponentFactory.createGroupAddComponent(

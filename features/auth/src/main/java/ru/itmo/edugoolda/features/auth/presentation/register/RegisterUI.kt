@@ -1,11 +1,12 @@
 package ru.itmo.edugoolda.features.auth.presentation.register
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -36,61 +37,65 @@ fun RegisterUi(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
+        modifier = modifier.systemBarsPadding()
     ) {
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         IconButton(
             onClick = { component.onBackButtonClick() },
             enabled = !isRegisterProgress,
-            modifier = Modifier.align(Alignment.Start)
+            modifier = Modifier
+                .align(Alignment.Start)
+                .padding(top = 7.dp)
         ) {
             Icon(
                 imageVector = Icons.Default.ArrowBack,
                 contentDescription = "ArrowBack"
             )
         }
-
-        Spacer(modifier = Modifier.height(37.dp))
+        Spacer(Modifier.weight(0.15f))
 
         Text(
             text = stringResource(id = R.string.register_title),
             fontWeight = CustomTheme.typography.title.bold.fontWeight,
-            fontSize = CustomTheme.typography.title.bold.fontSize
+            fontSize = CustomTheme.typography.title.bold.fontSize,
         )
 
-        Spacer(modifier = Modifier.height(75.dp))
+        Spacer(Modifier.weight(0.2f))
 
         AppTextField(
             placeholder = stringResource(id = R.string.register_email_header_hint),
             inputControl = component.emailInputControl,
-            modifier = Modifier.padding(horizontal = 21.dp)
-            )
-
-        Spacer(modifier = Modifier.height(12.dp))
+            modifier = Modifier
+                .padding(horizontal = 21.dp)
+                .padding(bottom = 12.dp),
+            onTextChanging = {
+                component.emailInputControl.error.value = null
+            }
+        )
 
         AppTextField(
             placeholder = stringResource(id = R.string.register_password_hint),
             inputControl = component.passwordInputControl,
-            modifier = Modifier.padding(horizontal = 21.dp)
+            modifier = Modifier
+                .padding(horizontal = 21.dp)
+                .padding(bottom = 12.dp)
         )
-
-        Spacer(modifier = Modifier.height(12.dp))
 
         AppTextField(
             placeholder = stringResource(id = R.string.register_username_header_hint),
             inputControl = component.userNameInputControl,
-            modifier = Modifier.padding(horizontal = 21.dp)
+            modifier = Modifier
+                .padding(horizontal = 21.dp)
+                .padding(bottom = 19.dp)
         )
-
-        Spacer(modifier = Modifier.height(19.dp))
 
         Text(
             text = stringResource(id = R.string.register_title_role),
             fontWeight = CustomTheme.typography.title.bold.fontWeight,
             fontSize = CustomTheme.typography.title.bold.fontSize,
-            modifier = Modifier.align(Alignment.Start).padding(start = 21.dp)
+            modifier = Modifier
+                .align(Alignment.Start)
+                .padding(start = 21.dp)
         )
 
         Column(
@@ -105,14 +110,17 @@ fun RegisterUi(
             }
         }
 
-        Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.weight(0.65f))
 
         AppButton(
             text = stringResource(id = R.string.register_button_register),
             buttonType = ButtonType.Primary,
             onClick = { component.onRegisterClick() },
             isLoading = isRegisterProgress,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 22.dp).padding(bottom = 60.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 22.dp)
+                .padding(bottom = 30.dp)
         )
     }
 }
@@ -139,6 +147,9 @@ fun RoleItem(
             selected = isSelected,
             onClick = onClick,
         )
-        Text(text = text)
+        Text(text = text,
+            modifier = Modifier.clickable {
+                onClick()
+            })
     }
 }

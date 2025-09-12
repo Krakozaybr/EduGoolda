@@ -6,8 +6,8 @@
     <string name="lesson_deadline_title">Дедлайн</string>
     <string name="teacher_solution_details_title">Информация о решении</string>
     <string name="lesson_checked_status">Решение закрыто, как проверенное</string>
-    <string name="solution_button_change_checked_type_to_reviewed">Установить, как проверенное</string>
-    <string name="solution_button_change_checked_type_to_pending">Установить, как ожидает проверки</string>
+    <string name="solution_change_checked_type_to_reviewed">Урок отмечен как проверенный</string>
+    <string name="solution_change_checked_type_to_pending">Урок отмечен как ожидающий проверки</string>
     <string name="delete_lesson">Удаление урока</string>
     <string name="delete_lesson_message">Вы уверены, что хотите удалить урок «%s»? Это действие приведет к удалению всех данных, связанных с этим уроком.</string>
     <string name="lesson_confirm">Да</string>
@@ -20,4 +20,8 @@
     <string name="lesson_create_type_practical">Практический</string>
     <string name="lesson_create_type_title">Тип урока</string>
     <string name="lesson_add_group_button">Добавить группу</string>
+    <string name="search_group">Найти</string>
+    <string name="lesson_adding_group_title">Добавление группы</string>
+    <string name="lessons_list_empty_student">Упс, похоже тут пусто…</string>
+    <string name="lessons_list_empty_teacher">У вас нет ни одного урока, создайте новый</string>
 </resources>

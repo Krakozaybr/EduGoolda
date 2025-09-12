@@ -39,7 +39,7 @@ fun StandardDialog(dialogControl: StandardDialogControl) {
                 dismissOnBackPress = dismissableByUser,
                 dismissOnClickOutside = dismissableByUser
             ),
-            shape = RoundedCornerShape(4.dp),
+            shape = RoundedCornerShape(8.dp),
 
             title = {
                 Text(
@@ -73,18 +73,18 @@ fun StandardDialog(dialogControl: StandardDialogControl) {
 
             confirmButton = {
                 DialogButton(
-                    text = data.confirmButton.text.localized(),
                     onClick = data.confirmButton.action,
-                    onDismiss = dialogControl::dismiss
+                    onDismiss = dialogControl::dismiss,
+                    text = data.confirmButton.text.localized()
                 )
             },
 
             dismissButton = data.dismissButton?.let { dismissButton ->
                 {
                     DialogButton(
-                        text = dismissButton.text.localized(),
                         onClick = dismissButton.action,
-                        onDismiss = dialogControl::dismiss
+                        onDismiss = dialogControl::dismiss,
+                        text = dismissButton.text.localized()
                     )
                 }
             }
@@ -93,11 +93,12 @@ fun StandardDialog(dialogControl: StandardDialogControl) {
 }
 
 @Composable
-private fun DialogButton(
-    text: String,
+fun DialogButton(
     onClick: () -> Unit,
     onDismiss: () -> Unit,
-    modifier: Modifier = Modifier
+    text: String,
+    modifier: Modifier = Modifier,
+    isEnabled: Boolean = true,
 ) {
     Text(
         text = text,
@@ -107,10 +108,13 @@ private fun DialogButton(
             fontSize = 15.sp,
             lineHeight = 18.sp
         ),
-        color = CustomTheme.colors.button.primary,
+        color = when (isEnabled) {
+            true -> CustomTheme.colors.button.primary
+            false -> CustomTheme.colors.button.primaryDisabled
+        },
         textAlign = TextAlign.Center,
         modifier = modifier
-            .clickable {
+            .clickable(enabled = isEnabled) {
                 onClick()
                 onDismiss()
             }

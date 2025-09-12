@@ -11,5 +11,4 @@ interface LessonDetailsRepository {
     suspend fun sendMessageByStudent(lessonId: LessonId, message: String)
     suspend fun sendMessageByTeacher(solutionId: SolutionId, message: String)
     suspend fun setSolutionStatus(solutionId: SolutionId, status: LessonStatus)
-    suspend fun deleteLessonTeacher(lessonId: LessonId)
 }

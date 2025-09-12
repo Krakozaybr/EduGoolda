@@ -6,7 +6,7 @@
     <string name="delete_participant_message_secondary">Вы уверены, что хотите удалить участника из группы «%s»? Это действие приведет к удалению прогресса выполнения заданий данным учеником.</string>
     <string name="search_students_group">Найти</string>
     <string name="group_info_title">Информация о группе</string>
-    <string name="group_invitation_code">Получить код приглашения</string>
+    <string name="group_invitation_code">Код приглашения</string>
     <string name="group_members_title">Участники</string>
     <string name="group_add_title">Добавление группы</string>
     <string name="group_textfield_code">Код приглашения</string>
@@ -25,4 +25,14 @@
     <string name="group_textfield_name">Название</string>
     <string name="group_textfield_description">Описание</string>
     <string name="group_textfield_subject">Название предмета</string>
+    <string name="group_list_empty_student">К сожалению, вы не являетесь членом\nкакой-либо группы…</string>
+    <string name="group_list_empty_teacher">У вас нет ни одной группы,\nсоздайте новую</string>
+    <string name="group_message_code_copied">Код добавлен в буфер обмена</string>
+    <string name="group_students_list_empty_teacher">В группе нет ни одного участника…</string>
+    <string name="dialog_add_group_title">Введите код приглашения</string>
+    <string name="dialog_add_group_confirm">Подтвердить</string>
+    <string name="dialog_add_group_dismiss">Отменить</string>
+    <string name="dialog_add_group_message">Код приглашения</string>
+    <string name="message_service_invalid_code">Введен неверный код приглашения</string>
+    <string name="message_service_valid_code_sent">Заявка в группу успешно отправлена</string>
 </resources>

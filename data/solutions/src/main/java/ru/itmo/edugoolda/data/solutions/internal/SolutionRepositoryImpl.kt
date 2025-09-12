@@ -34,7 +34,6 @@ class SolutionRepositoryImpl(
                     hasPreviousPage = false,
                     items = solutionList.solutionInfoList,
                     total = solutionList.total
-
                 )
             }
 

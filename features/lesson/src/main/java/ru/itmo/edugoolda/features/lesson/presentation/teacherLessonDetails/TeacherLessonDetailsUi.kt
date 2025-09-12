@@ -1,14 +1,18 @@
 package ru.itmo.edugoolda.features.lesson.presentation.teacherLessonDetails
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -20,13 +24,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.itmo.edugoolda.core.dialog.standard.StandardDialog
 import ru.itmo.edugoolda.core.theme.AppTheme
 import ru.itmo.edugoolda.core.theme.custom.CustomTheme
 import ru.itmo.edugoolda.core.widget.PullRefreshLceWidget
+import ru.itmo.edugoolda.core.widget.text.FadingEdgeScrollableText
 import ru.itmo.edugoolda.data.lesson.lesson_details.api.LessonFullDetails
 import ru.itmo.edugoolda.features.lesson.R
 
@@ -37,19 +41,21 @@ fun TeacherLessonDetailsUi(
 ) {
     val studentLessonDetailsState by component.lessonTeacherDetailsState.collectAsState()
 
+    val statusBarHeight = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
+
     StandardDialog(component.dialogDeleteLesson)
 
-    Column(modifier = modifier) {
+    Column(modifier = modifier.navigationBarsPadding()) {
         Row(
             modifier = Modifier
-                .height(70.dp)
+                .height(50.dp + statusBarHeight)
                 .background(CustomTheme.colors.content.contentActive)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(
                 onClick = { component.onReturnBackClick() },
-                Modifier.padding(top = 15.dp)
+                Modifier.padding(top = 3.dp + statusBarHeight, bottom = 6.dp, start = 5.dp)
             ) {
                 Icon(
                     painter = painterResource(R.drawable.arrow_left_white),
@@ -60,7 +66,7 @@ fun TeacherLessonDetailsUi(
 
             Text(
                 text = stringResource(R.string.student_lesson_details_title),
-                modifier = Modifier.padding(start = 30.dp, top = 15.dp),
+                modifier = Modifier.padding(start = 30.dp, top = 3.dp + statusBarHeight, bottom = 6.dp),
                 fontWeight = CustomTheme.typography.title.bold.fontWeight,
                 fontSize = CustomTheme.typography.body.regular.fontSize,
                 color = CustomTheme.colors.text.invert
@@ -70,7 +76,8 @@ fun TeacherLessonDetailsUi(
         PullRefreshLceWidget(
             state = studentLessonDetailsState,
             onRefresh = component::onRefresh,
-            onRetryClick = component::onRetryClick
+            onRetryClick = component::onRetryClick,
+            isShowCircularProgressIndicator = false
         ) { data: LessonFullDetails, _: Boolean ->
             Column {
                 Row(
@@ -81,17 +88,17 @@ fun TeacherLessonDetailsUi(
                         .padding(horizontal = 20.dp)
                         .padding(top = 20.dp)
                 ) {
-                    Column {
-                        Text(
-                            text = data.name,
-                            fontWeight = CustomTheme.typography.title.boldSmallerSize.fontWeight,
-                            fontSize = CustomTheme.typography.title.boldSmallerSize.fontSize,
-                            modifier = Modifier.width(220.dp),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            softWrap = false
-                        )
-                    }
+                    Text(
+                        text = data.name,
+                        fontWeight = CustomTheme.typography.title.boldSmallerSize.fontWeight,
+                        fontSize = CustomTheme.typography.title.boldSmallerSize.fontSize,
+                        modifier = Modifier
+                            .padding(end = 30.dp)
+                            .weight(1f)
+                            .basicMarquee(),
+                        maxLines = 1,
+                        softWrap = false
+                    )
 
                     IconButton(
                         onClick = { component.onDialogLessonDelete() },
@@ -112,17 +119,9 @@ fun TeacherLessonDetailsUi(
                     color = CustomTheme.colors.text.primary,
                     modifier = Modifier
                         .padding(horizontal = 20.dp)
-                        .padding(top = 15.dp)
+                        .padding(top = 15.dp, bottom = 4.dp)
                 )
-                Text(
-                    text = data.description ?: stringResource(R.string.lesson_description_null),
-                    fontWeight = CustomTheme.typography.body.regular.fontWeight,
-                    fontSize = CustomTheme.typography.body.regular.fontSize,
-                    color = CustomTheme.colors.text.primary,
-                    modifier = Modifier
-                        .padding(horizontal = 20.dp)
-                        .padding(top = 3.dp)
-                )
+                FadingEdgeScrollableText(data.description, horizontalPadding = 20.dp)
             }
         }
     }

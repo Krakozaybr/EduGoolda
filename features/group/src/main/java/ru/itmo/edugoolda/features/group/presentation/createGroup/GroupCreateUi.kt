@@ -2,12 +2,17 @@ package ru.itmo.edugoolda.features.group.presentation.createGroup
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -35,18 +40,19 @@ fun GroupCreateUi(
 ) {
 
     val isCreationButtonEnabled by component.isCreationButtonEnabled.collectAsState()
+    val statusBarHeight = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
 
-    Column(modifier = modifier) {
+    Column(modifier = modifier.navigationBarsPadding().fillMaxSize()) {
         Row(
             modifier = Modifier
-                .height(70.dp)
+                .height(50.dp + statusBarHeight)
                 .background(CustomTheme.colors.content.contentActive)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(
                 onClick = { component.onCancelClick() },
-                Modifier.padding(top = 15.dp)
+                Modifier.padding(top = statusBarHeight + 3.dp, bottom = 6.dp, start = 5.dp)
             ) {
                 Icon(
                     painter = painterResource(R.drawable.arrow_left_white),
@@ -57,7 +63,7 @@ fun GroupCreateUi(
 
             Text(
                 text = stringResource(R.string.group_creation_title),
-                modifier = Modifier.padding(start = 30.dp, top = 15.dp),
+                modifier = Modifier.padding(start = 30.dp, top = statusBarHeight + 3.dp, bottom = 6.dp),
                 fontWeight = CustomTheme.typography.title.bold.fontWeight,
                 fontSize = CustomTheme.typography.body.regular.fontSize,
                 color = CustomTheme.colors.text.invert
@@ -78,7 +84,8 @@ fun GroupCreateUi(
             modifier = Modifier
                 .padding(horizontal = 22.dp)
                 .padding(bottom = 30.dp),
-            minLines = 6
+            minLines = 5,
+            maxLines = 5
         )
 
         AppTextField(
@@ -96,10 +103,13 @@ fun GroupCreateUi(
                 text = stringResource(R.string.group_create_button),
                 buttonType = ButtonType.Primary,
                 modifier = Modifier
-                    .padding(bottom = 30.dp)
-                    .width(200.dp)
+                    .padding(bottom = 20.dp)
+                    .padding(horizontal = 100.dp)
+                    .fillMaxWidth()
                     .align(Alignment.CenterHorizontally),
-                isEnabled = isCreationButtonEnabled
+                isEnabled = isCreationButtonEnabled,
+            contentPadding = PaddingValues(vertical = 14.dp, horizontal = 18.dp)
+
         )
     }
 }

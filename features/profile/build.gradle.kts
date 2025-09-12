@@ -11,6 +11,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":data:auth"))
     ksp(libs.ktorfit.ksp)
 
     // Modules

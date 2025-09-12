@@ -30,4 +30,8 @@ class SolutionListComponentImpl(
     override fun onLoadNext() {
         solutionReplica.loadNext()
     }
+
+    override fun onReturnBackClickRequest() {
+        communication.onReturnBackFromSolutionListRequested()
+    }
 }
